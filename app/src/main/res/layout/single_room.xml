@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:layout_margin="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/roomimageview"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/room_photo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/roomname"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Room Name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/roomdesc"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/roomimageview"
+            android:text="Room Desc"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/roomprice"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/roomdesc"
+            android:text="Room Price"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
