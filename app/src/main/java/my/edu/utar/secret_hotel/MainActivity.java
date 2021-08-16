@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnMenu, btnProfile, btnBook;
+    Button btnMenu, btnProfile, btnBook, btnService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RoomList.class);
+                startActivity(intent);
+            }
+        });
+
+        btnService = findViewById(R.id.btnService);
+        btnService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Service.class);
                 startActivity(intent);
             }
         });

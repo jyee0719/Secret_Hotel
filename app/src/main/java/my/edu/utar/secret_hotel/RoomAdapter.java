@@ -58,7 +58,6 @@ public class RoomAdapter extends BaseAdapter {
         TextView price = convertView.findViewById(R.id.roomprice);
         ImageView image = convertView.findViewById(R.id.roomimageview);
 
-
         Room room = roomArrayList.get(position);
         type.setText(room.getRoomType());
         desc.setText(room.getRoomDesc());
