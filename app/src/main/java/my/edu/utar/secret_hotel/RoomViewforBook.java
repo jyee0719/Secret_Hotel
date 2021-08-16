@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class RoomViewforBook extends AppCompatActivity {
@@ -42,17 +43,16 @@ public class RoomViewforBook extends AppCompatActivity {
 //            Log.i(Toast.makeText("nono",short));
 //        }
 
-        //String type = getIntent().getStringExtra("type");
-        String data = getIntent().getStringExtra("desc");
-        //String price = getIntent().getStringExtra("price");
+        String type = getIntent().getStringExtra("type");
+        String desc = getIntent().getStringExtra("desc");
+        String price = getIntent().getStringExtra("price");
 
-        //rn.setText(type);
-        rd.setText(data);
-        //rp.setText(price);
+        rn.setText(type);
+        rd.setText(desc);
+        rp.setText(price);
         //rn.setText(getIntent().getStringExtra("type"));
 
-
-        databaseReference.child(data).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(type).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

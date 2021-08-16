@@ -68,17 +68,17 @@ public class RoomList extends AppCompatActivity {
                 }
             });
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Room room = new Room();
-                    Intent intent = new Intent(getApplicationContext(), RoomViewforBook.class);
-                    //intent.putExtra("room",listView.getItemAtPosition(position).toString());
-                    intent.putExtra("type", room.getRoomType());
-                    startActivity(intent);
-
-                }
-            });
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    Room room = new Room();
+//                    Intent intent = new Intent(getApplicationContext(), RoomViewforBook.class);
+//                    //intent.putExtra("room",listView.getItemAtPosition(position).toString());
+//                    intent.putExtra("data", room.getRoomType());
+//                    startActivity(intent);
+//
+//                }
+//            });
         }
 
 }
