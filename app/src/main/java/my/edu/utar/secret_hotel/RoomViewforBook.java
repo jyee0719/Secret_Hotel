@@ -31,52 +31,53 @@ public class RoomViewforBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_viewfor_book);
 
-        rn=findViewById(R.id.roomname1);
-        rd=findViewById(R.id.roomdesc1);
-        rp=findViewById(R.id.roomprice1);
-        book=findViewById(R.id.book);
-        imageView=findViewById(R.id.roomimageview1);
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Rooms");
-
-        Intent intent =this.getIntent();
-//        if(intent==null){
-//            Log.i(Toast.makeText("nono",short));
-//        }
-
-        String type = getIntent().getStringExtra("type");
-        String desc = getIntent().getStringExtra("desc");
-        String price = getIntent().getStringExtra("price");
-
-        rn.setText(type);
-        rd.setText(desc);
-        rp.setText(price);
+//        rn=findViewById(R.id.roomname0);
+//        rd=findViewById(R.id.roomdesc0);
+//        rp=findViewById(R.id.roomprice0);
+//        book=findViewById(R.id.book0);
+//        imageView=findViewById(R.id.roomimageview0);
+//        databaseReference= FirebaseDatabase.getInstance().getReference().child("Rooms");
+//
+//        Intent intent =this.getIntent();
+////        if(intent==null){
+////            Log.i(Toast.makeText("nono",short));
+////        }
+//
+//        String type = getIntent().getStringExtra("type");
+//        String desc = getIntent().getStringExtra("desc");
+//        String price = getIntent().getStringExtra("price");
+//
+//        rn.setText(type);
+//        rd.setText(desc);
+//        rp.setText(price);
         //rn.setText(getIntent().getStringExtra("type"));
 
-        databaseReference.child(type).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String type = dataSnapshot.child("type").getValue().toString();
-                    String desc = dataSnapshot.child("description").getValue().toString();
-                    String image = dataSnapshot.child("image").getValue().toString();
-                    String price = dataSnapshot.child("price").getValue().toString();
-
-                    rn.setText(type);
-                    rd.setText(desc);
-                    rp.setText(price);
-//                    Glide.with()
-//                            .load(image)
-//                            .into(imageView);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        databaseReference.child(room).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    //String type = getIntent().getStringExtra("type");
+//                    String type = dataSnapshot.child("type").getValue().toString();
+//                    String desc = dataSnapshot.child("description").getValue().toString();
+//                    String image = dataSnapshot.child("image").getValue().toString();
+//                    String price = dataSnapshot.child("price").getValue().toString();
+//
+//                    rn.setText(type);
+//                    rd.setText(desc);
+//                    rp.setText(price);
+////                    Glide.with()
+////                            .load(image)
+////                            .into(imageView);
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 }

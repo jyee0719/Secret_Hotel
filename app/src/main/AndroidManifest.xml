@@ -11,9 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Secret_Hotel">
+        <activity android:name=".BookingDate"></activity>
+        <activity android:name=".Room6" />
+        <activity android:name=".Room5" />
+        <activity android:name=".Room4" />
+        <activity android:name=".Room3" />
+        <activity android:name=".Room2" />
+        <activity android:name=".SingleRoom" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".RoomList"></activity>
+        <activity android:name=".RoomList" />
         <activity android:name=".ImageUploader" />
         <activity android:name=".MainActivity">
             <intent-filter>

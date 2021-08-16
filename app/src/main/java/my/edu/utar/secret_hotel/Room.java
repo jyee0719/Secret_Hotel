@@ -3,15 +3,24 @@ package my.edu.utar.secret_hotel;
 import android.widget.ImageView;
 
 public class Room {
-     private String roomType, roomDesc, roomImageURL, roomPrice;
+     private String roomType, roomDesc, roomImageURL, roomPrice, rid;
 
      public Room(){}
 
-    public Room(String roomType, String roomDesc, String roomImageURL, String roomPrice) {
+    public Room(String roomType, String roomDesc, String roomImageURL, String roomPrice, String rid) {
         this.roomType = roomType;
         this.roomDesc = roomDesc;
         this.roomImageURL = roomImageURL;
         this.roomPrice = roomPrice;
+        this.rid = rid;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
     }
 
     public String getRoomType() {

@@ -68,19 +68,20 @@ public class RoomAdapter extends BaseAdapter {
                 .load(room.getRoomImageURL())
                 .into(image);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //openSingleRoom(room.getRoomType(),room.getRoomDesc(),room.getRoomPrice());
-                //openSingleRoom(room.getRoomDesc());
-                Intent intent= new Intent(context, RoomViewforBook.class);
-                intent.putExtra("type",room.getRoomType());
-                intent.putExtra("image",room.getRoomImageURL());
-                intent.putExtra("desc",room.getRoomDesc());
-                intent.putExtra("price",room.getRoomPrice());
-                context.startActivity(intent);
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //openSingleRoom(room.getRoomType(),room.getRoomDesc(),room.getRoomPrice());
+//                //openSingleRoom(room.getRoomDesc());
+//                Intent intent= new Intent(context, RoomViewforBook.class);
+//                //intent.putExtra("room",getItemId(position));
+//                intent.putExtra("type",room.getRoomType());
+//                intent.putExtra("image",room.getRoomImageURL());
+//                intent.putExtra("desc",room.getRoomDesc());
+//                intent.putExtra("price",room.getRoomPrice());
+//                context.startActivity(intent);
+//            }
+//        });
 
         return convertView;
     }
