@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,12 +55,15 @@ public class BookingDate extends AppCompatActivity {
 //
 //                    long difftDays = difference / (24 * 60 * 60 * 1000);
 //
-                    long differenceInMillis = date1.getTime() - date2.getTime();
+                    long differenceInMillis = date2.getTime() - date1.getTime();
                     float noOfDays = (differenceInMillis) / 1000f / 60f / 60f / 24f;
-                    days.setText("days"+noOfDays);
+                    days.setText(""+noOfDays);
 //                    Log.i("Testing","days" +difftDays);
 //                    days.setText("days" +difftDays);
 
+                    if(!days.getText().toString().isEmpty()) {
+                        Toast.makeText(BookingDate.this, "Number of Day: " + noOfDays, Toast.LENGTH_SHORT).show();
+                    }
 //
                }
              catch(Exception ex)
