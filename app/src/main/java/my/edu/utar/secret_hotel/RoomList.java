@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -64,6 +67,18 @@ public class RoomList extends AppCompatActivity {
 
                 }
             });
+
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    Room room = new Room();
+//                    Intent intent = new Intent(getApplicationContext(), RoomViewforBook.class);
+//                    //intent.putExtra("room",listView.getItemAtPosition(position).toString());
+//                    intent.putExtra("data", room.getRoomType());
+//                    startActivity(intent);
+//
+//                }
+//            });
         }
 
 }

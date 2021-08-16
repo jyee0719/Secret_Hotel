@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical"
-    android:layout_margin="10dp">
-
+    android:layout_height="match_parent"
+    android:background="#8390E3"
+    tools:context=".RoomViewforBook">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="600dp"
+        android:id="@+id/li"
         android:orientation="vertical"
+        android:background="#ffffff"
         android:layout_margin="10dp">
 
         <ImageView
             android:layout_width="400dp"
-            android:id="@+id/roomimageview"
+            android:id="@+id/roomimageview1"
             android:layout_height="300dp"
             android:layout_gravity="center"
             android:src="@drawable/room_photo"/>
 
         <TextView
             android:layout_width="match_parent"
-            android:id="@+id/roomname"
+            android:id="@+id/roomname1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -32,13 +35,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:id="@+id/roomdesc"
+            android:id="@+id/roomdesc1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="20dp"
-            android:justificationMode="inter_word"
             android:textStyle="bold"
             android:layout_below="@+id/roomimageview"
             android:text="Room Desc"/>
@@ -50,7 +52,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:id="@+id/roompricetv"
+                android:id="@+id/roompricetv1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -60,19 +62,32 @@
                 android:layout_below="@+id/roomdesc"
                 android:text="Room Price: RM"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:id="@+id/roomprice"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_below="@+id/roomdesc"
-            android:text="Room Price"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/roomprice1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/roomdesc"
+                android:text="Room Price"/>
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/book"
+            android:layout_below="@+id/li"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:text="Book Now!"
+            android:textSize="20dp"
+            app:backgroundTint="#123dfd" />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
