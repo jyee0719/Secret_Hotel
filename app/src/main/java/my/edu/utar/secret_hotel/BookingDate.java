@@ -220,6 +220,9 @@ public class BookingDate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String qty1 = String.valueOf(quantity.getText());
+                String inDate = String.valueOf(checkindate.getText());
+                String outDate = String.valueOf(checkoutdate.getText());
+                String duration = String.valueOf(days.getText());
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if(!uid.isEmpty()) {
                     databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
@@ -228,9 +231,9 @@ public class BookingDate extends AppCompatActivity {
                     parameters.put("roomName", type);
                     parameters.put("unitprice", price);
                     parameters.put("quantity",qty1);
-//                parameters.put("checkindate",checkin);
-//                parameters.put("checkoutdate",checkout);
-//                parameters.put("duration",noOfdays);
+                    parameters.put("checkindate",inDate);
+                    parameters.put("checkoutdate",outDate);
+                    parameters.put("duration",duration);
                     databaseReference.child(cartID).child(uid).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
                     dialog.dismiss();
