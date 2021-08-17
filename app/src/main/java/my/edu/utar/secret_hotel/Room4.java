@@ -59,6 +59,20 @@ public class Room4 extends AppCompatActivity {
                         .load(image)
                         .into(imageView);
 
+                book.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String type = rn.getText().toString();
+                        String price = rp.getText().toString();
+                        Intent intent = new Intent(Room4.this, BookingDate.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("price", price);
+                        intent.putExtra("image", image);
+                        startActivity(intent);
+
+                    }
+                });
+
             }
 
 
@@ -68,16 +82,16 @@ public class Room4 extends AppCompatActivity {
             }
         });
 
-        book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String type = rn.getText().toString();
-                String price = rp.getText().toString();
-                Intent intent = new Intent(Room4.this,BookingDate.class);
-                intent.putExtra("type",type);
-                intent.putExtra("price",price);
-                startActivity(intent);
-            }
-        });
+//        book.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String type = rn.getText().toString();
+//                String price = rp.getText().toString();
+//                Intent intent = new Intent(Room4.this,BookingDate.class);
+//                intent.putExtra("type",type);
+//                intent.putExtra("price",price);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

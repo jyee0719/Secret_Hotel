@@ -26,7 +26,6 @@ public class RoomList extends AppCompatActivity {
 
     private DatabaseReference databaseReference, root;
     ArrayList<Room> roomArrayList;
-    CustomAdapter customAdapter;
     Context context;
     RoomAdapter roomAdapter;
     ListView listView;
@@ -68,17 +67,6 @@ public class RoomList extends AppCompatActivity {
                 }
             });
 
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    Room room = new Room();
-//                    Intent intent = new Intent(getApplicationContext(), RoomViewforBook.class);
-//                    //intent.putExtra("room",listView.getItemAtPosition(position).toString());
-//                    intent.putExtra("type", room.getRoomType());
-//                    startActivity(intent);
-//
-//                }
-//            });
 
         //listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

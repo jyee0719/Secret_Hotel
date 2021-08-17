@@ -1,5 +1,6 @@
 package my.edu.utar.secret_hotel;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -10,20 +11,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class BookingDate extends AppCompatActivity {
-    String type, price;
+    String type, price, image;
     TextView days;
     EditText checkindate,checkoutdate;
     DatePickerDialog datePickerDialog;
-    Button counButton;
+    Button counButton, addtocartbutt;
     Calendar c1,c2;
+
+    //popup
+    private AlertDialog.Builder dialogBuilder;
+    AlertDialog dialog;
+    ImageView imageViewforpopup;
+    TextView name,quantity;
+    ImageButton add,remove;
+    Button save;
+    int qty =1;
+
+    //save to database
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +54,7 @@ public class BookingDate extends AppCompatActivity {
         Intent intent=getIntent();
         type=intent.getStringExtra("type");
         price=intent.getStringExtra("price");
+        image= intent.getStringExtra("image");
         //getSupportActionBar().setTitle(type);
         getSupportActionBar().setTitle("Book Your Date");
 
@@ -40,6 +62,14 @@ public class BookingDate extends AppCompatActivity {
         checkoutdate = findViewById (R.id.checkoutdate);
         days = findViewById (R.id.date);
         counButton = findViewById (R.id.countdate);
+        addtocartbutt =findViewById(R.id.cart);
+
+        addtocartbutt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createPopupDialog(type, image, price);
+            }
+        });
 
         counButton.setOnClickListener (new View.OnClickListener ( ) {
             @Override
@@ -135,5 +165,73 @@ public class BookingDate extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+    }
+
+
+    private void createPopupDialog(String type, String image, String price) {
+        dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.popup, null);
+
+        name = view.findViewById(R.id.name);
+        quantity = view.findViewById(R.id.quantity);
+        //price = view.findViewById(R.id.price);
+        imageViewforpopup = view.findViewById(R.id.iv);
+
+        add = view.findViewById(R.id.addbutton);
+        remove = view.findViewById(R.id.removebutton);
+        save = view.findViewById(R.id.save);
+        //int qty=1;
+
+        dialogBuilder.setView(view);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        name.setText(type);
+        //String price1=price;
+
+        Glide.with(BookingDate.this)
+                .load(image)
+                .into(imageViewforpopup);
+
+
+
+        quantity.setText(""+qty);
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qty++;
+                quantity.setText(""+qty);
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qty--;
+                quantity.setText(""+qty);
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
+                String cartID=databaseReference.push().getKey();
+                HashMap<String,String> parameters= new HashMap<>();
+                parameters.put("roomName",type);
+                parameters.put("unitprice",price);
+//                parameters.put("quantity",qty);
+//                parameters.put("checkindate",checkin);
+//                parameters.put("checkoutdate",checkout);
+//                parameters.put("duration",noOfdays);
+                databaseReference.child(cartID).setValue(parameters);
+
+                dialog.dismiss();
+            }
+        });
+
     }
 }
