@@ -32,6 +32,8 @@ public class Room3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room3);
 
+        getSupportActionBar().setTitle("Triple Room");
+
         rn=findViewById(R.id.roomname1);
         rd=findViewById(R.id.roomdesc1);
         rp=findViewById(R.id.roomprice1);
@@ -70,8 +72,10 @@ public class Room3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String type = rn.getText().toString();
+                String price = rp.getText().toString();
                 Intent intent = new Intent(Room3.this,BookingDate.class);
                 intent.putExtra("type",type);
+                intent.putExtra("price",price);
                 startActivity(intent);
             }
         });

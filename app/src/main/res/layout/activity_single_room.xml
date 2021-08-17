@@ -74,13 +74,18 @@
                 android:text="Room Price"/>
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/book1"
             android:layout_below="@+id/li"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
             android:backgroundTint="#A07855"
             android:text="Book Now!"
             android:textSize="20dp"

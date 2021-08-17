@@ -3,7 +3,9 @@ package my.edu.utar.secret_hotel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,8 @@ public class Room6 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room6);
+
+        getSupportActionBar().setTitle("President Suite");
 
         rn=findViewById(R.id.roomname1);
         rd=findViewById(R.id.roomdesc1);
@@ -61,6 +65,18 @@ public class Room6 extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = rn.getText().toString();
+                String price = rp.getText().toString();
+                Intent intent = new Intent(Room6.this,BookingDate.class);
+                intent.putExtra("type",type);
+                intent.putExtra("price",price);
+                startActivity(intent);
             }
         });
     }

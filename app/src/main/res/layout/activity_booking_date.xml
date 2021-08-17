@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="Check In Date: "
+        android:layout_margin="10dp"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +24,10 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:editable="false"
+        android:layout_marginLeft="10dp"
         android:id="@+id/checkindate"/>
 
     <TextView
@@ -34,6 +37,8 @@
         android:text="Check Out Date: "
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,21 +46,42 @@
         app:layout_constraintVertical_bias="0.57" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:id="@+id/checkoutdate"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Count"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#A07855"
         android:id="@+id/countdate"/>
 
-    <EditText
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/showDate"
+        android:layout_margin="10dp"
+        android:text="Total Booking Days: "/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/date"/>
 
-
+    </LinearLayout>
 
 </LinearLayout>
