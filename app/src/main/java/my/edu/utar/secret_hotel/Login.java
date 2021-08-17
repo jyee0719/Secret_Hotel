@@ -20,6 +20,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -114,13 +120,41 @@ public class Login extends AppCompatActivity {
                         //check login successful or not
                         if(task.isSuccessful()){ //if user is created successfully
                             Toast.makeText(Login.this,"Login successfully.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            //isUser();
+                            startActivity(new Intent(getApplicationContext(), Profile.class));
                         } else{
                             Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
                 });
+            }
+        });
+    }
+
+    public void isUser(){
+        String userEnteredEmail = loginEmail.getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        Query checkUser = reference.orderByChild("email").equalTo(userEnteredEmail);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String emailDB = snapshot.child("email").getValue().toString();
+                    String icDB = snapshot.child("ic").getValue().toString();
+
+                    Intent intent = new Intent(getApplicationContext(),Profile.class);
+                    intent.putExtra("email", emailDB);
+                    intent.putExtra("ic", icDB);
+
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
