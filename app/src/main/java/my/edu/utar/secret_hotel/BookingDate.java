@@ -42,7 +42,7 @@ public class BookingDate extends AppCompatActivity {
     TextView name,quantity;
     ImageButton add,remove;
     Button save;
-    int qty =1;
+    int qty;
 
     //save to database
     DatabaseReference databaseReference;
@@ -215,10 +215,11 @@ public class BookingDate extends AppCompatActivity {
             }
         });
 
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String qty1 = String.valueOf(quantity.getText());
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if(!uid.isEmpty()) {
                     databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
@@ -226,7 +227,7 @@ public class BookingDate extends AppCompatActivity {
                     HashMap<String, String> parameters = new HashMap<>();
                     parameters.put("roomName", type);
                     parameters.put("unitprice", price);
-//                parameters.put("quantity",qty);
+                    parameters.put("quantity",qty1);
 //                parameters.put("checkindate",checkin);
 //                parameters.put("checkoutdate",checkout);
 //                parameters.put("duration",noOfdays);

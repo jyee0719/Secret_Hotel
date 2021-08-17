@@ -49,15 +49,6 @@ public class Profile extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         userID = fAuth.getUid();
 
-        if(userID != null){
-            //User is signed in
-
-        } else{
-            //No user is signed in
-            Intent intent = new Intent(getApplicationContext(),Login.class);
-            startActivity(intent);
-        }
-
         databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
