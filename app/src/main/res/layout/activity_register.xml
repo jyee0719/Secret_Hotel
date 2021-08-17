@@ -11,31 +11,47 @@
         android:id="@+id/logo"
         android:layout_width="275dp"
         android:layout_height="203dp"
-        app:layout_constraintBottom_toTopOf="@id/regEmail"
+        app:layout_constraintBottom_toTopOf="@id/regIC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.33"
         app:srcCompat="@drawable/logo" />
 
+
+    <EditText
+        android:id="@+id/regIC"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="IC number (without '' - '' )"
+        android:inputType="number"
+        android:textColorHint="#7B7B8E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createAccount"
+        app:layout_constraintVertical_bias="0.072" />
+
     <EditText
         android:id="@+id/regEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:textColorHint="#7B7B8E"
         android:inputType="textEmailAddress"
+        android:textColorHint="#7B7B8E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593" />
-
+        app:layout_constraintTop_toBottomOf="@id/regIC"
+        app:layout_constraintVertical_bias="0.078" />
 
     <EditText
         android:id="@+id/regPsw"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
@@ -80,13 +96,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CREATE ACCOUNT"
-        android:textSize="20dp"
+        android:textColor="#66462F"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/regEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.293" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
