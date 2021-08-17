@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -218,18 +219,21 @@ public class BookingDate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
-                String cartID=databaseReference.push().getKey();
-                HashMap<String,String> parameters= new HashMap<>();
-                parameters.put("roomName",type);
-                parameters.put("unitprice",price);
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                if(!uid.isEmpty()) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
+                    String cartID = databaseReference.push().getKey();
+                    HashMap<String, String> parameters = new HashMap<>();
+                    parameters.put("roomName", type);
+                    parameters.put("unitprice", price);
 //                parameters.put("quantity",qty);
 //                parameters.put("checkindate",checkin);
 //                parameters.put("checkoutdate",checkout);
 //                parameters.put("duration",noOfdays);
-                databaseReference.child(cartID).setValue(parameters);
-
-                dialog.dismiss();
+                    databaseReference.child(cartID).child(uid).setValue(parameters);
+                    Log.i("Database: ", "Add is Successful");
+                    dialog.dismiss();
+                }
             }
         });
 
