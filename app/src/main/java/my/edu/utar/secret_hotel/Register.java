@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,12 +17,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 public class Register extends AppCompatActivity {
 
-    EditText regEmail, regPsw;
-    TextView btnToLogin;
-    Button btnReg;
+    EditText regEmail, regPsw, regIC;
+    Button btnReg, btnToLogin;
     FirebaseAuth fAuth;
 
     @Override
@@ -29,18 +36,16 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        regIC = findViewById(R.id.regIC);
         regEmail = findViewById(R.id.regEmail);
         regPsw = findViewById(R.id.regPsw);
         btnReg = findViewById(R.id.btnReg);
         btnToLogin = findViewById(R.id.btnToLogin);
 
         fAuth = FirebaseAuth.getInstance();
-
-        //check if user has created account previously
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+        //realtime database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference node = database.getReference("Users");
 
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +60,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String email = regEmail.getText().toString().trim();
                 String psw = regPsw.getText().toString().trim();
+                String ic = regIC.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     regEmail.setError("Email is required.");
@@ -64,9 +70,17 @@ public class Register extends AppCompatActivity {
                     regPsw.setError("Password is required.");
                     return;
                 }
+                if(TextUtils.isEmpty(ic)){
+                    regIC.setError("IC number is required.");
+                    return;
+                }
 
                 if(psw.length() < 6){
                     regPsw.setError("Password must be more than 6 characters.");
+                    return;
+                }
+                if(ic.length() < 12 || ic.length() > 12){
+                    regIC.setError("IC number must be 12 numbers.");
                     return;
                 }
 
@@ -75,6 +89,11 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ //if user is created successfully
+                            //put user email and ic into realtime database
+                            User userData = new User(email, ic);
+                            String uID = fAuth.getCurrentUser().getUid();
+                            node.child(uID).setValue(userData);
+
                             Toast.makeText(Register.this,"Account created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else{
