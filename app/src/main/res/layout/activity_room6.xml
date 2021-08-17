@@ -8,6 +8,16 @@
     android:background="#D4B996"
     tools:context=".Room6">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
 
     <ImageView
         android:layout_width="400dp"
@@ -89,6 +99,8 @@
         android:text="Book Now!"
         android:textSize="20dp"
         app:backgroundTint="#123dfd" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
