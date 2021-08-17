@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/iv"
+                android:src="@drawable/ic_baseline_shopping_cart_24"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:textSize="25dp"
+                android:text="Room Name"
+                android:textStyle="bold"
+                android:layout_below="@+id/iv"
+                android:layout_centerHorizontal="true"/>
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/removebutton"
+                android:layout_below="@id/name"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@+id/quantity"
+                android:src="@drawable/ic_baseline_remove_circle_outline_24"/>
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="20dp"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true"/>
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addbutton"
+                android:src="@drawable/ic_baseline_add_circle_outline_24"
+                android:layout_below="@id/name"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/quantity" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/quantity"
+                android:layout_centerHorizontal="true"
+                android:text="Save"
+                android:id="@+id/save"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
