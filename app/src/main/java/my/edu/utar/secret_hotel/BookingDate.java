@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -18,9 +19,10 @@ import java.util.Date;
 
 public class BookingDate extends AppCompatActivity {
     String type, price;
-    EditText datefrom,dateto,days;
+    TextView days;
+    EditText checkindate,checkoutdate;
     DatePickerDialog datePickerDialog;
-    Button save_btn;
+    Button counButton;
     Calendar c1,c2;
 
     @Override
@@ -34,37 +36,38 @@ public class BookingDate extends AppCompatActivity {
         //getSupportActionBar().setTitle(type);
         getSupportActionBar().setTitle("Book Your Date");
 
-        datefrom = findViewById (R.id.checkindate);
-        dateto = findViewById (R.id.checkoutdate);
+        checkindate = findViewById (R.id.checkindate);
+        checkoutdate = findViewById (R.id.checkoutdate);
         days = findViewById (R.id.date);
-        save_btn = findViewById (R.id.countdate);
+        counButton = findViewById (R.id.countdate);
 
-        save_btn.setOnClickListener (new View.OnClickListener ( ) {
+        counButton.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View view) {
 
                 //  loadsave();
                 try {
-                    String d1 = datefrom.getText ().toString ();
-                    String d2 = dateto.getText ().toString ();
+                    String d1 = checkindate.getText ().toString ();
+                    String d2 = checkoutdate.getText ().toString ();
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                     Date date1 = simpleDateFormat.parse(d1);
                     Date date2 = simpleDateFormat.parse(d2);
                     long difference = Math.abs(date1.getTime() - date2.getTime());
-//
-//                    long difftDays = difference / (24 * 60 * 60 * 1000);
-//
+
+
                     long differenceInMillis = date2.getTime() - date1.getTime();
                     float noOfDays = (differenceInMillis) / 1000f / 60f / 60f / 24f;
-                    days.setText(""+noOfDays);
-//                    Log.i("Testing","days" +difftDays);
-//                    days.setText("days" +difftDays);
+                    days.setText(""+ noOfDays);
+                    Log.i("Count days success", "days"+days );
+
 
                     if(!days.getText().toString().isEmpty()) {
                         Toast.makeText(BookingDate.this, "Number of Day: " + noOfDays, Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(BookingDate.this, "nono: " + noOfDays, Toast.LENGTH_SHORT).show();
                     }
-//
+
                }
              catch(Exception ex)
                 {
@@ -77,7 +80,7 @@ public class BookingDate extends AppCompatActivity {
 
 
 
-        datefrom.setOnClickListener(new View.OnClickListener() {
+        checkindate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // calender class's instance and get current date , month and year from calender
@@ -85,6 +88,7 @@ public class BookingDate extends AppCompatActivity {
                 int mYear = c1.get(Calendar.YEAR); // current year
                 int mMonth = c1.get(Calendar.MONTH); // current month
                 int mDay = c1.get(Calendar.DAY_OF_MONTH); // current day
+
                 // date picker dialog
                 datePickerDialog = new DatePickerDialog(BookingDate.this,new DatePickerDialog.OnDateSetListener() {
 
@@ -97,7 +101,7 @@ public class BookingDate extends AppCompatActivity {
                         String[] MONTHS = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
                         String mon=MONTHS[monthOfYear];
 
-                        datefrom.setText(dayOfMonth + "-"
+                        checkindate.setText(dayOfMonth + "-"
                                 + (mon) + "-" + year);
 
                     }
@@ -106,7 +110,7 @@ public class BookingDate extends AppCompatActivity {
             }
         });
 
-        dateto.setOnClickListener(new View.OnClickListener() {
+        checkoutdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // calender class's instance and get current date , month and year from calender
@@ -122,7 +126,7 @@ public class BookingDate extends AppCompatActivity {
                         // set day of month , month and year value in the edit text
                         String[] MONTHS = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
                         String mon=MONTHS[monthOfYear];
-                        dateto.setText(dayOfMonth + "-" + (mon) + "-" + year);
+                        checkoutdate.setText(dayOfMonth + "-" + (mon) + "-" + year);
 
 
 
