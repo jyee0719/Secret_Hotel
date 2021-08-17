@@ -17,11 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class BookingDate extends AppCompatActivity {
     String type, price, image;
@@ -39,6 +42,9 @@ public class BookingDate extends AppCompatActivity {
     ImageButton add,remove;
     Button save;
     int qty =1;
+
+    //save to database
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,33 +217,21 @@ public class BookingDate extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String qty = quantity.getText().toString();
-                String d1 = checkindate.getText ().toString ();
-                String d2 = checkoutdate.getText ().toString ();
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-                Date date1 = null;
-                try {
-                    date1 = simpleDateFormat.parse(d1);
-                    Date date2 = simpleDateFormat.parse(d2);
-
-
-                    long differenceInMillis = date2.getTime() - date1.getTime();
-                    float noOfDays = (differenceInMillis) / 1000f / 60f / 60f / 24f;
-                    addToCart(type, qty, price, d1, d2, noOfDays);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
+                databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
+                String cartID=databaseReference.push().getKey();
+                HashMap<String,String> parameters= new HashMap<>();
+                parameters.put("roomName",type);
+                parameters.put("unitprice",price);
+//                parameters.put("quantity",qty);
+//                parameters.put("checkindate",checkin);
+//                parameters.put("checkoutdate",checkout);
+//                parameters.put("duration",noOfdays);
+                databaseReference.child(cartID).setValue(parameters);
 
                 dialog.dismiss();
             }
         });
-
-    }
-    private void addToCart(String type, String qty, String price, String checkin, String checkout, float duration){
 
     }
 }
