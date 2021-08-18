@@ -17,19 +17,19 @@ import com.bumptech.glide.Glide;
 import java.time.Instant;
 import java.util.ArrayList;
 
-public class RoomAdapter extends BaseAdapter {
+public class CartAdapter extends BaseAdapter {
 
-    private final ArrayList<Room> roomArrayList;
+    private final ArrayList<Cart> cartArrayList;
     private final Context context;
 
-    public RoomAdapter(ArrayList<Room> roomArrayList, Context context){
-        this.roomArrayList = roomArrayList;
+    public CartAdapter(ArrayList<Cart> cartArrayList, Context context){
+        this.cartArrayList = cartArrayList;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return this.roomArrayList.size();
+        return this.cartArrayList.size();
     }
 
     @Override
@@ -47,21 +47,25 @@ public class RoomAdapter extends BaseAdapter {
 
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        convertView = layoutInflater.inflate(R.layout.single_room, null);
+        convertView = layoutInflater.inflate(R.layout.cart, null);
 
 
-        TextView type = convertView.findViewById(R.id.roomname);
-        TextView desc = convertView.findViewById(R.id.roomdesc);
+        TextView name = convertView.findViewById(R.id.roomname);
+        TextView quantity = convertView.findViewById(R.id.roomqty);
         TextView price = convertView.findViewById(R.id.roomprice);
         ImageView image = convertView.findViewById(R.id.roomimageview);
+        TextView checkin = convertView.findViewById(R.id.checkin);
+        TextView checkout = convertView.findViewById(R.id.checkout);
 
-        Room room = roomArrayList.get(position);
-        type.setText(room.getRoomType());
-        desc.setText(room.getRoomDesc());
-        price.setText(room.getRoomPrice());
+        Cart cart = cartArrayList.get(position);
+        name.setText(cart.getName());
+        quantity.setText(cart.getQuantity());
+        price.setText(cart.getPrice());
+        checkin.setText(cart.getCheckin());
+        checkout.setText(cart.getCheckout());
 
         Glide.with(context)
-                .load(room.getRoomImageURL())
+                .load(cart.getImage())
                 .into(image);
 
 
