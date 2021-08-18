@@ -10,5 +10,8 @@ public class Service extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
+
+        getSupportActionBar().setTitle("Services");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
