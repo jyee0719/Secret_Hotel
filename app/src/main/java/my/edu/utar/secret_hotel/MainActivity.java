@@ -97,5 +97,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnLocation = findViewById(R.id.btnLocation);
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Map.class);
+                startActivity(intent);
+            }
+        });
     }
 }
