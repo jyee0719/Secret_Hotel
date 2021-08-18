@@ -11,8 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Secret_Hotel">
-        <activity android:name=".Profile"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".PromotionEvents"
+            android:exported="true" />
+        <activity
+            android:name=".LoyaltyProgram"
+            android:exported="true" />
+        <activity
+            android:name=".Profile"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".BookingDate" />
         <activity android:name=".Room6" />
         <activity android:name=".Room5" />
