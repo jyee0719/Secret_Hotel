@@ -24,6 +24,7 @@
         <activity android:name=".Register" />
         <activity android:name=".Service" />
         <activity android:name=".RoomList" />
+        <activity android:name=".CartList" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
