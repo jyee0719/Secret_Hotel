@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        getSupportActionBar().setTitle("User Profile");
+        getSupportActionBar().setTitle("Profile Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         email = findViewById(R.id.profileEmail);
         ic = findViewById(R.id.profileIC);
