@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Map">
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.huawei.hms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnMenu, btnProfile, btnBook, btnService;
+    Button btnMenu, btnProfile, btnBook, btnService, btnLocation;
     FirebaseAuth fAuth;
     DatabaseReference databaseReference;
     String userID;
@@ -78,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CartList.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLocation = findViewById(R.id.btnLocation);
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Map.class);
                 startActivity(intent);
             }
         });
