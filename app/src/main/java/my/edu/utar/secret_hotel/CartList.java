@@ -28,6 +28,7 @@ public class CartList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_list);
+        getSupportActionBar().setTitle("Cart");
 
         listView=findViewById(R.id.listview);
         root = FirebaseDatabase.getInstance().getReference("Cart");

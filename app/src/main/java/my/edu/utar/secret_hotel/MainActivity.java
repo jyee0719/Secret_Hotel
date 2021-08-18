@@ -14,7 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnMenu, btnProfile, btnBook, btnService;
+    Button btnMenu, btnBook, btnService, btnEvent, btnBookHistory, btnLoyalty, btnLocation, btnAboutUs;
+    ImageButton btnProfile;
     FirebaseAuth fAuth;
     DatabaseReference databaseReference;
     String userID;
@@ -81,5 +82,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnBookHistory = findViewById(R.id.btnBookHistory);
+        btnEvent = findViewById(R.id.btnEvent);
+        btnLoyalty = findViewById(R.id.btnLoyalty);
+        btnAboutUs = findViewById(R.id.btnAboutUs);
+
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AboutUs.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLocation = findViewById(R.id.btnLocation);
     }
 }

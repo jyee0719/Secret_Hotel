@@ -36,6 +36,8 @@ public class RoomList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
+        getSupportActionBar().setTitle("Book a room");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView=findViewById(R.id.listview);
         root = FirebaseDatabase.getInstance().getReference("Rooms");
