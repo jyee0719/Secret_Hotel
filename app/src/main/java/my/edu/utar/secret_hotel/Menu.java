@@ -14,6 +14,9 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
+        getSupportActionBar().setTitle("Restaurant Menu");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         btnMain = findViewById(R.id.btnMain);
         btnDrink = findViewById(R.id.btnDrink);
         btnDessert = findViewById(R.id.btnDessert);

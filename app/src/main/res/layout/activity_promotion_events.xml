@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDCCB0"
+    tools:context=".PromotionEvents">
+
+    <TextView
+        android:id="@+id/promoheader"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/headbanner"
+        android:gravity="center"
+        android:text="PROMOTIONS AND \n EVENTS"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="match_parent"
+        android:layout_height="269dp"
+        android:layout_marginTop="88dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/promoheader"
+        app:srcCompat="@drawable/banner" />
+
+    <TextView
+        android:id="@+id/christmasdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Date: 23rd Decmber - 25th December"
+        android:textColor="#DC4646"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/promoheader"
+        app:layout_constraintVertical_bias="0.527"
+        tools:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/christmastext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Christmas Promotion and Events!"
+        android:textColor="#DC4646"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/promoheader"
+        app:layout_constraintVertical_bias="0.54"
+        tools:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12">
+
+        <TextView
+            android:id="@+id/promotion"
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:background="#A07855"
+            android:gravity="center"
+            android:text="Book a room during 23rd December to 25th December to enjoy a 10% OFF for every room type and stand a chance to win a mystery gift on lucky draw!!!"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/event"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:layout_marginTop="0dp"
+            android:background="#715943"
+            android:gravity="center"
+            android:text="Christmas Party celebraiton\n Location: Main Hall \n Date: 24th December \n Time: 9pm-12am"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/gifttext"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:background="#A07855"
+            android:gravity="center"
+            android:text="Stand a chance to win a mystery gift during the Christmas Party Lucky Draw!"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/booknowtext"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:background="#715943"
+            android:gravity="center"
+            android:text="Still thinking? Press the button below to \n Book Now!"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            tools:textStyle="bold" />
+
+        <Button
+            android:id="@+id/booknow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A07855"
+            android:text="Book Now"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="154dp"
+        android:layout_height="219dp"
+        android:rotation="350"
+        android:translationY="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@drawable/christmastree" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="84dp"
+        android:layout_height="79dp"
+        android:rotation="45"
+        android:translationX="350dp"
+        android:translationY="110dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@drawable/snowflake" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="68dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="-460dp"
+        android:layout_marginLeft="-460dp"
+        android:translationY="220dp"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@drawable/gift" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
