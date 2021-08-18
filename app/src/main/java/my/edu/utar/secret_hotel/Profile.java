@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class Profile extends AppCompatActivity {
 
-    EditText email, ic;
+    TextView email, ic;
     Button btnLogout;
     DatabaseReference databaseReference;
     String userID;
