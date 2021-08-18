@@ -226,7 +226,7 @@ public class BookingDate extends AppCompatActivity {
                 String image1 = String.valueOf(image);
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if(!uid.isEmpty()) {
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
+                    databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Cart");
                     String cartID = databaseReference.push().getKey();
                     HashMap<String, String> parameters = new HashMap<>();
                     parameters.put("roomName", type);
@@ -236,7 +236,7 @@ public class BookingDate extends AppCompatActivity {
                     parameters.put("checkoutdate",outDate);
                     parameters.put("duration",duration);
                     parameters.put("image",image1);
-                    databaseReference.child(cartID).child(uid).setValue(parameters);
+                    databaseReference.child(cartID).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
                     dialog.dismiss();
                 }

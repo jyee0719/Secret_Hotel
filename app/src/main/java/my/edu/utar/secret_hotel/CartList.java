@@ -36,8 +36,8 @@ public class CartList extends AppCompatActivity {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         if(!uid.isEmpty()) {
-            databaseReference = FirebaseDatabase.getInstance().getReference("Cart");
-            databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+            databaseReference.child(uid).child("Cart").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
