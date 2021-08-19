@@ -25,6 +25,9 @@
             android:name=".Map"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".LoyaltyProgram"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".Profile"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".BookingDate" />
