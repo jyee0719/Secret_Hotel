@@ -11,35 +11,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Secret_Hotel">
-        <activity android:name=".AboutUs"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".Map"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".Profile"
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+
+        <activity android:name=".CheckoutList" />
+        <activity
+            android:name=".AboutUs"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Map"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Profile"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".BookingDate" />
-        <activity android:name=".Room6"
+        <activity
+            android:name=".Room6"
             android:parentActivityName=".RoomList" />
-        <activity android:name=".Room5"
-            android:parentActivityName=".RoomList"/>
-        <activity android:name=".Room4"
-            android:parentActivityName=".RoomList"/>
-        <activity android:name=".Room3"
-            android:parentActivityName=".RoomList"/>
-        <activity android:name=".Room2"
-            android:parentActivityName=".RoomList"/>
-        <activity android:name=".SingleRoom"
-            android:parentActivityName=".RoomList"/>
-        <activity android:name=".Login"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Register"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Service"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".RoomList"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".CartList"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Room5"
+            android:parentActivityName=".RoomList" />
+        <activity
+            android:name=".Room4"
+            android:parentActivityName=".RoomList" />
+        <activity
+            android:name=".Room3"
+            android:parentActivityName=".RoomList" />
+        <activity
+            android:name=".Room2"
+            android:parentActivityName=".RoomList" />
+        <activity
+            android:name=".SingleRoom"
+            android:parentActivityName=".RoomList" />
+        <activity
+            android:name=".Login"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Register"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Service"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RoomList"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CartList"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
