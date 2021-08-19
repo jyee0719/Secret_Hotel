@@ -50,6 +50,7 @@ public class Payment extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference node = database.getReference("Cart");
         Intent intent = getIntent();
+        payment_amount = intent.getStringExtra("payment_amount");
 
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,6 @@ public class Payment extends AppCompatActivity {
                 String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
                 String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
                 String cvv = edt_cvv.getText().toString().trim();
-                payment_amount = intent.getStringExtra("payment_amount");
                 tv_payment_Amount.setText(payment_amount);
 
 

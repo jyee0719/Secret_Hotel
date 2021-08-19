@@ -83,10 +83,6 @@ public class CheckoutList extends AppCompatActivity {
                         double totalPrice = cartArrayList.getTotalPrice();
                         total_price.setText("RM "+totalPrice + "");
 
-                        String total_price2 = total_price.getText().toString();
-                        Intent intent = new Intent(CheckoutList.this, Payment.class);
-                        intent.putExtra("payment_amount", total_price2);
-                        startActivity(intent);
                     }
 
                     @Override
@@ -102,7 +98,10 @@ public class CheckoutList extends AppCompatActivity {
             proceedPayment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(CheckoutList.this, Payment.class));
+                    String total_price2 = total_price.getText().toString();
+                    Intent intent = new Intent(CheckoutList.this, Payment.class);
+                    intent.putExtra("payment_amount", total_price2);
+                    startActivity(intent);
                 }
             });
 
