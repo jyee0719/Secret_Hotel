@@ -35,7 +35,8 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        getSupportActionBar().setTitle("Register A New Account");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         regIC = findViewById(R.id.regIC);
         regEmail = findViewById(R.id.regEmail);
         regPsw = findViewById(R.id.regPsw);
