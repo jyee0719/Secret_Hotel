@@ -46,6 +46,10 @@
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".CartList"
             android:parentActivityName=".MainActivity"/>
+        <activity android:name=".PromotionEvents"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".LoyaltyProgram"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
