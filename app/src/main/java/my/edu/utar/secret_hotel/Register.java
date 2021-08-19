@@ -93,7 +93,6 @@ public class Register extends AppCompatActivity {
                             User userData = new User(email, ic);
                             String uID = fAuth.getCurrentUser().getUid();
                             node.child(uID).setValue(userData);
-
                             Toast.makeText(Register.this,"Account created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else{

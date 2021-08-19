@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class CheckoutList extends AppCompatActivity {
             date = dateFormat.format(calendar.getTime());
             currentDate.setText(date);
 
+            proceedPayment = findViewById(R.id.btn_proceedPayment);
             checkout_listView = findViewById(R.id.checkout_listView);
             proceedPayment = findViewById(R.id.btn_proceedPayment);
             total_price = findViewById(R.id.tv_totalPrice);
@@ -79,6 +82,7 @@ public class CheckoutList extends AppCompatActivity {
 
                         double totalPrice = cartArrayList.getTotalPrice();
                         total_price.setText("RM "+totalPrice + "");
+
                     }
 
                     @Override
@@ -90,6 +94,16 @@ public class CheckoutList extends AppCompatActivity {
                 Log.i("Database: ", "Checkout is added successful Successful");
 
             }
+
+            proceedPayment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String total_price2 = total_price.getText().toString();
+                    Intent intent = new Intent(CheckoutList.this, Payment.class);
+                    intent.putExtra("payment_amount", total_price2);
+                    startActivity(intent);
+                }
+            });
 
         }
 }
