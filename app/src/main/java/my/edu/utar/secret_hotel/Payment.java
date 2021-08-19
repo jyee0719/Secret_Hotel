@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 
 import java.util.HashMap;
@@ -33,7 +31,8 @@ public class Payment extends AppCompatActivity {
     private EditText edt_cvv;
     private Button btn_pay;
     private ProgressBar progressBar_payment;
-    String payment_amount;
+    String payment_amount,counts;
+    int count=0;
 
     DatabaseReference databaseReference;
 
@@ -64,6 +63,8 @@ public class Payment extends AppCompatActivity {
                 String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
                 String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
                 String cvv = edt_cvv.getText().toString().trim();
+                ++count;
+                counts = String.valueOf(count);
 
                 if (cardHolderName.isEmpty()) {
                     edt_cardHolderName.setError("Card holder name is required!");
@@ -131,6 +132,7 @@ public class Payment extends AppCompatActivity {
                     parameters.put("card_expiry_date_year", expiryDate_year);
                     parameters.put("cvv", cvv);
                     parameters.put("payment_amount", payment_amount);
+                    parameters.put("count",counts);
                     databaseReference.child(uid).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
                     Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
