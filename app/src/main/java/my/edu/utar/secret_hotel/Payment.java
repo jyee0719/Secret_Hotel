@@ -137,6 +137,7 @@ public class Payment extends AppCompatActivity {
                     databaseReference.child(uid).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
                     Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
+
                     startActivity(new Intent(Payment.this,MainActivity.class));
 
                 }
