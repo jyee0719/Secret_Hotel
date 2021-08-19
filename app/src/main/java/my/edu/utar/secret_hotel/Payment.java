@@ -11,13 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.huawei.hmf.tasks.OnSuccessListener;
 
 import java.util.HashMap;
 
@@ -51,6 +54,7 @@ public class Payment extends AppCompatActivity {
         DatabaseReference node = database.getReference("Cart");
         Intent intent = getIntent();
         payment_amount = intent.getStringExtra("payment_amount");
+        tv_payment_Amount.setText(payment_amount);
 
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +64,6 @@ public class Payment extends AppCompatActivity {
                 String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
                 String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
                 String cvv = edt_cvv.getText().toString().trim();
-                tv_payment_Amount.setText(payment_amount);
-
 
                 if (cardHolderName.isEmpty()) {
                     edt_cardHolderName.setError("Card holder name is required!");
@@ -111,21 +113,31 @@ public class Payment extends AppCompatActivity {
                     return;
                 }
 
-                if (expiryDate_mon.length() != 3){
+                if (cvv.length() != 3){
                     edt_cvv.setError("CVV should be 3-digits!");
                     edt_cvv.requestFocus();
                 }
 
                 progressBar_payment.setVisibility(View.VISIBLE);
 
-                paymentDetail paymentDetail = new paymentDetail(payment_amount,cardHolderName, cardNumber,expiryDate_mon,expiryDate_year,cvv);
-                String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                node.child(uID).setValue(paymentDetail);
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                if(!uid.isEmpty()) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference("Payment");
+                    String cartID = databaseReference.push().getKey();
+                    HashMap<String, String> parameters = new HashMap<>();
+                    parameters.put("card_holder_name", cardHolderName);
+                    parameters.put("card_number", cardNumber);
+                    parameters.put("card_expiry_date_mon", expiryDate_mon);
+                    parameters.put("card_expiry_date_year", expiryDate_year);
+                    parameters.put("cvv", cvv);
+                    parameters.put("payment_amount", payment_amount);
+                    databaseReference.child(uid).setValue(parameters);
+                    Log.i("Database: ", "Add is Successful");
+                    Toast.makeText(Payment.this, "Add To Cart Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Payment.this,MainActivity.class));
+                }
 
-                startActivity(new Intent(Payment.this, MainActivity.class));
             }
-
-
         });
     }
 }
