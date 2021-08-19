@@ -43,7 +43,7 @@ public class BookingDate extends AppCompatActivity {
     TextView name,quantity;
     ImageButton add,remove;
     Button save;
-    int qty;
+    int qty=1;
 
     //save to database
     DatabaseReference databaseReference;
@@ -259,6 +259,11 @@ public class BookingDate extends AppCompatActivity {
             public void onClick(View v) {
                 qty++;
                 quantity.setText(""+qty);
+                String qty1 = String.valueOf(quantity.getText());
+                int qty2=Integer.parseInt(qty1);
+                if(qty2>0){
+                    save.setEnabled(true);
+                }
             }
         });
 
@@ -267,6 +272,12 @@ public class BookingDate extends AppCompatActivity {
             public void onClick(View v) {
                 qty--;
                 quantity.setText(""+qty);
+                String qty1 = String.valueOf(quantity.getText());
+                int qty2=Integer.parseInt(qty1);
+                if(qty2<=0){
+                    save.setEnabled(false);
+                    Toast.makeText(BookingDate.this, "The Quantity Cannot be Zero or Negative", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
