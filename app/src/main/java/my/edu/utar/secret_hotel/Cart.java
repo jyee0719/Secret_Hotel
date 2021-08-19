@@ -1,5 +1,7 @@
 package my.edu.utar.secret_hotel;
 
+import java.util.Objects;
+
 public class Cart {
     private String name, price, quantity, checkin,checkout,duration, image;
 
@@ -14,6 +16,7 @@ public class Cart {
         this.checkin = checkin;
         this.checkout = checkout;
         this.duration = duration;
+        this.image = image;
     }
 
     public String getName() {
@@ -68,7 +71,22 @@ public class Cart {
         this.duration = duration;
     }
 
-    public void setImage(String duration) {
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart cart = (Cart) o;
+        return Objects.equals(name, cart.name) &&
+                Objects.equals(checkin, cart.checkin) &&
+                Objects.equals(checkout, cart.checkout);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, checkin, checkout);
     }
 }

@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,10 +22,11 @@ import java.util.ArrayList;
 
 public class CartList extends AppCompatActivity {
     private DatabaseReference databaseReference, root;
-    ArrayList<Cart> cartArrayList;
+    private CartItemList cartArrayList;
     Context context;
     CartAdapter cartAdapter;
     ListView listView;
+    Button btn_checkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +34,12 @@ public class CartList extends AppCompatActivity {
         setContentView(R.layout.activity_cart_list);
         getSupportActionBar().setTitle("Cart");
 
+        btn_checkout = (Button)findViewById(R.id.btn_checkout);
+
         listView=findViewById(R.id.listview);
         root = FirebaseDatabase.getInstance().getReference("Cart");
 
-        cartArrayList=new ArrayList<>();
+        cartArrayList=new CartItemList();
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         if(!uid.isEmpty()) {
@@ -49,10 +55,9 @@ public class CartList extends AppCompatActivity {
                         cart.setPrice(dataSnapshot.child("unitprice").getValue().toString());
                         cart.setCheckin(dataSnapshot.child("checkindate").getValue().toString());
                         cart.setCheckout(dataSnapshot.child("checkoutdate").getValue().toString());
-                        //Room room = dataSnapshot.getValue(Room.class);
-                        cartArrayList.add(cart);
+                        cartArrayList.addItem(cart);
                     }
-                    cartAdapter = new CartAdapter(cartArrayList, CartList.this);
+                    cartAdapter = new CartAdapter(cartArrayList.getCartArrayList(), CartList.this);
                     listView.setAdapter(cartAdapter);
                     cartAdapter.notifyDataSetChanged();
 
@@ -65,5 +70,12 @@ public class CartList extends AppCompatActivity {
             });
            Log.i("Database: ", "Add is Successful");
         }
+
+        btn_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CartList.this, CheckoutList.class));
+            }
+        });
     }
 }
