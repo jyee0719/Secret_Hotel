@@ -136,7 +136,6 @@ public class Payment extends AppCompatActivity {
                     Toast.makeText(Payment.this, "Add To Cart Successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Payment.this,MainActivity.class));
                 }
-
             }
         });
     }
