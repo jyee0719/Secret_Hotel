@@ -15,11 +15,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     Button btnMenu, btnBook, btnService, btnEvent, btnBookHistory, btnLoyalty, btnLocation, btnAboutUs;
-    ImageButton btnProfile;
+    ImageButton btnProfile, btnCart, btnLocate;
     FirebaseAuth fAuth;
     DatabaseReference databaseReference;
     String userID;
-    ImageButton btnCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CartList.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLocate = findViewById(R.id.btnLocate);
+        btnLocate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Location.class);
                 startActivity(intent);
             }
         });

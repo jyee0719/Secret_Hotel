@@ -70,7 +70,7 @@
         app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <TextView
         android:id="@+id/tvIC"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toStartOf="@+id/profileIC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <TextView
         android:id="@+id/tvPhone"

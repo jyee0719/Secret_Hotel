@@ -37,7 +37,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        getSupportActionBar().setTitle("Login Account");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loginEmail = findViewById(R.id.loginEmail);
         loginPsw = findViewById(R.id.loginPsw);
         btnLogin = findViewById(R.id.btnLogin);

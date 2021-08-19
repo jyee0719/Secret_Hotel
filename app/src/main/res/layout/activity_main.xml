@@ -32,56 +32,56 @@
         <Button
             android:id="@+id/btnMenu"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#A07855"
             android:padding="10dp"
             android:text="Restaurant"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintHorizontal_bias="0.147"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.659"></Button>
+            app:layout_constraintVertical_bias="0.53"></Button>
 
         <Button
             android:id="@+id/btnBookHistory"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#D4B996"
             android:padding="10dp"
             android:text="Booking history"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintHorizontal_bias="0.147"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.358"></Button>
+            app:layout_constraintVertical_bias="0.295"></Button>
 
         <Button
             android:id="@+id/btnLocation"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#A07855"
             android:padding="10dp"
             android:text="Location"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.883"
+            app:layout_constraintHorizontal_bias="0.845"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959"></Button>
+            app:layout_constraintVertical_bias="0.769"></Button>
 
         <Button
             android:id="@+id/btnBook"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#A07855"
             android:padding="10dp"
             android:text="Book room"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.149"
@@ -92,64 +92,80 @@
         <Button
             android:id="@+id/btnLoyalty"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#A07855"
             android:padding="10dp"
             android:text="Loyalty Program"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.883"
+            app:layout_constraintHorizontal_bias="0.845"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.358"></Button>
+            app:layout_constraintVertical_bias="0.295"></Button>
 
         <Button
             android:id="@+id/btnAboutUs"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#D4B996"
             android:padding="10dp"
             android:text="About us"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintHorizontal_bias="0.147"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959"></Button>
+            app:layout_constraintVertical_bias="0.769"></Button>
 
         <Button
             android:id="@+id/btnService"
             android:layout_width="140dp"
-            android:layout_height="101dp"
+            android:layout_height="80dp"
             android:backgroundTint="#D4B996"
             android:padding="10dp"
             android:text="Services"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.883"
+            app:layout_constraintHorizontal_bias="0.845"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.659"></Button>
+            app:layout_constraintVertical_bias="0.53"></Button>
 
         <Button
             android:id="@+id/btnEvent"
             android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:backgroundTint="#D4B996"
             android:padding="10dp"
             android:text="Promotion Event"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.883"
+            app:layout_constraintHorizontal_bias="0.845"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.062"></Button>
+            app:layout_constraintVertical_bias="0.061"></Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btnLocate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="48dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/btnProfile"

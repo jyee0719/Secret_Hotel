@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Secret_Hotel</string>
     <string name="map_key" translatable="false">
-        CwEAAAAAwb8YKL87GVUIJ9xWXSfsxH2uddVAPAbhi55DeRsXrf6yD1cOLDEYttR36pr9ja9y8TVsTYz+Dn6Gw8/LO0DYRGdi9fI=
+        CwEAAAAARTvJ56yEUw4y7PxPOm4SudEEnhZm+FqKLXNSj/TPaSFsJzA4VJ2I3x7RWFz+T/gapS6KdpQM2MFLLBnulzy7TbnujfI=
     </string>
     <string name="card_holder_name">Card Holder Name</string>
     <string name="card_number">Card Number</string>
