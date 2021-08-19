@@ -49,7 +49,6 @@ public class CartAdapter extends BaseAdapter {
                 Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.cart, null);
 
-
         TextView name = convertView.findViewById(R.id.roomname);
         TextView quantity = convertView.findViewById(R.id.roomqty);
         TextView price = convertView.findViewById(R.id.roomprice);
@@ -67,7 +66,6 @@ public class CartAdapter extends BaseAdapter {
         Glide.with(context)
                 .load(cart.getImage())
                 .into(image);
-
 
         return convertView;
     }
