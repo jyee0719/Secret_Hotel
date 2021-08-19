@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class checkoutAdapter extends BaseAdapter {
+public class HistoryAdapter extends BaseAdapter {
     private final ArrayList<Cart> cartArrayList;
     private final Context context;
 
-    public checkoutAdapter(ArrayList<Cart> cartArrayList, Context context){
+    public HistoryAdapter(ArrayList<Cart> cartArrayList,Context context){
         this.cartArrayList = cartArrayList;
         this.context = context;
     }
@@ -38,7 +38,7 @@ public class checkoutAdapter extends BaseAdapter {
 
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        convertView = layoutInflater.inflate(R.layout.checkout, null);
+        convertView = layoutInflater.inflate(R.layout.history, null);
 
         TextView name = convertView.findViewById(R.id.tv_roomtype_invoice);
         TextView quantity = convertView.findViewById(R.id.tv_quantity_invoice);
@@ -47,13 +47,13 @@ public class checkoutAdapter extends BaseAdapter {
         TextView checkout = convertView.findViewById(R.id.tv_checkOutDate_invoice);
         TextView duration = convertView.findViewById(R.id.tv_duration_invoice);
 
-        Cart check_out = cartArrayList.get(position);
-        name.setText(check_out.getName());
-        quantity.setText(check_out.getQuantity());
-        price.setText(check_out.getPrice());
-        checkin.setText(check_out.getCheckin());
-        checkout.setText(check_out.getCheckout());
-        duration.setText(check_out.getDuration());
+        Cart history = cartArrayList.get(position);
+        name.setText(history.getName());
+        quantity.setText(history.getQuantity());
+        price.setText(history.getPrice());
+        checkin.setText(history.getCheckin());
+        checkout.setText(history.getCheckout());
+        duration.setText(history.getDuration());
 
         return convertView;
     }

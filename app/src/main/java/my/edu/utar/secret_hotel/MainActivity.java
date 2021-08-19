@@ -92,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnBookHistory = findViewById(R.id.btnBookHistory);
+        btnBookHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryList.class);
+                startActivity(intent);
+            }
+        });
         btnAboutUs = findViewById(R.id.btnAboutUs);
 
         btnAboutUs.setOnClickListener(new View.OnClickListener() {

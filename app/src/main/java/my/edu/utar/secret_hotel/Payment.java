@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.huawei.hmf.tasks.OnSuccessListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Payment extends AppCompatActivity {
@@ -137,6 +138,7 @@ public class Payment extends AppCompatActivity {
                     Log.i("Database: ", "Add is Successful");
                     Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Payment.this,MainActivity.class));
+
                 }
             }
         });

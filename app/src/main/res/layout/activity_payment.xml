@@ -129,7 +129,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="@string/expiryDate_mon"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:textAlignment="center" />
 
                 <TextView
@@ -151,7 +151,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="@string/expiryDateYear"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:textAlignment="center" />
             </LinearLayout>
 
