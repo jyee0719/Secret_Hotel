@@ -14,6 +14,7 @@ public class Cart {
         this.checkin = checkin;
         this.checkout = checkout;
         this.duration = duration;
+        this.image = image;
     }
 
     public String getName() {
@@ -68,7 +69,7 @@ public class Cart {
         this.duration = duration;
     }
 
-    public void setImage(String duration) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
