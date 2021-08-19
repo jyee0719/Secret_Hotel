@@ -63,7 +63,7 @@ public class BookingDate extends AppCompatActivity {
         checkindate = findViewById (R.id.checkindate);
         checkoutdate = findViewById (R.id.checkoutdate);
         days = findViewById (R.id.date);
-        counButton = findViewById (R.id.countdate);
+        //counButton = findViewById (R.id.countdate);
         addtocartbutt =findViewById(R.id.cart);
 
         addtocartbutt.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +294,11 @@ public class BookingDate extends AppCompatActivity {
                     parameters.put("image",image1);
                     databaseReference.child(cartID).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
+                    Toast.makeText(BookingDate.this, "Add To Cart Successfully", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+
+                    Intent intent = new Intent(BookingDate.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
