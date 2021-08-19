@@ -57,7 +57,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="354dp">
+        android:layout_height="371dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,13 +69,43 @@
                 android:layout_width="330dp"
                 android:layout_height="314dp"
                 android:layout_gravity="center"
-                android:background="@color/white" />
+                android:background="@color/white">
+
+            </ListView>
 
             <LinearLayout
                 android:layout_width="330dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_weight="1"
+                    android:text="Promote Code:"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_promoteCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textAlignment="gravity"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -106,9 +136,9 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:backgroundTint="#DF8E16"
+        android:padding="7dp"
         android:text="Proceed to Payment >> " />
 
 </LinearLayout>
