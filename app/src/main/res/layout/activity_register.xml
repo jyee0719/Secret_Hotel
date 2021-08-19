@@ -7,17 +7,17 @@
     android:background="#F5F5EF"
     tools:context=".Register">
 
+
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="275dp"
-        android:layout_height="203dp"
+        android:layout_width="195dp"
+        android:layout_height="115dp"
         app:layout_constraintBottom_toTopOf="@id/regIC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
+        app:layout_constraintVertical_bias="0.155"
         app:srcCompat="@drawable/logo" />
-
 
     <EditText
         android:id="@+id/regIC"
@@ -35,6 +35,21 @@
         app:layout_constraintVertical_bias="0.072" />
 
     <EditText
+        android:id="@+id/regPhone"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="number"
+        android:textColorHint="#7B7B8E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/regIC"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
         android:id="@+id/regEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -47,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regIC"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.154" />
 
     <EditText
         android:id="@+id/regPsw"
@@ -56,12 +71,12 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textColorHint="#7B7B8E"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regEmail"
-        app:layout_constraintVertical_bias="0.098" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnReg"
@@ -71,10 +86,9 @@
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regPsw"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintVertical_bias="0.162" />
 
     <Button
         android:id="@+id/btnToLogin"
@@ -97,14 +111,14 @@
         android:layout_height="wrap_content"
         android:text="CREATE ACCOUNT"
         android:textColor="#66462F"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/regEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.144" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

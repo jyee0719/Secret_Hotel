@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,10 +27,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.HashMap;
+
 public class Profile extends AppCompatActivity {
 
-    TextView email, ic;
-    Button btnLogout;
+    EditText email, ic, phone;
+    Button btnLogout, btnUpdate;
     DatabaseReference databaseReference;
     String userID;
     FirebaseAuth fAuth;
@@ -42,8 +45,11 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setTitle("Profile Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         email = findViewById(R.id.profileEmail);
+        email.setEnabled(false);
         ic = findViewById(R.id.profileIC);
+        phone = findViewById(R.id.profilePhone);
         btnLogout = findViewById(R.id.btnLogout);
+        btnUpdate = findViewById(R.id.btnUpdate);
 
         fAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -57,9 +63,11 @@ public class Profile extends AppCompatActivity {
                 if(userProfile != null){
                     String email1 = userProfile.getEmail();
                     String ic1 = userProfile.getIC();
+                    String phone1 = userProfile.getPhone();
 
                     email.setText(email1);
                     ic.setText(ic1);
+                    phone.setText(phone1);
                 }
             }
 
@@ -75,6 +83,24 @@ public class Profile extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newIC = ic.getText().toString();
+                String newPhone = phone.getText().toString();
+                HashMap hashMap = new HashMap();
+                hashMap.put("ic", newIC);
+                hashMap.put("phone", newPhone);
+
+                databaseReference.child(userID).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Toast.makeText(Profile.this, "Your profile is updated successfully.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

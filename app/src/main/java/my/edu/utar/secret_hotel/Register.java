@@ -27,7 +27,7 @@ import static android.content.ContentValues.TAG;
 
 public class Register extends AppCompatActivity {
 
-    EditText regEmail, regPsw, regIC;
+    EditText regEmail, regPsw, regIC, regPhone;
     Button btnReg, btnToLogin;
     FirebaseAuth fAuth;
 
@@ -39,6 +39,7 @@ public class Register extends AppCompatActivity {
         regIC = findViewById(R.id.regIC);
         regEmail = findViewById(R.id.regEmail);
         regPsw = findViewById(R.id.regPsw);
+        regPhone = findViewById(R.id.regPhone);
         btnReg = findViewById(R.id.btnReg);
         btnToLogin = findViewById(R.id.btnToLogin);
 
@@ -61,6 +62,7 @@ public class Register extends AppCompatActivity {
                 String email = regEmail.getText().toString().trim();
                 String psw = regPsw.getText().toString().trim();
                 String ic = regIC.getText().toString().trim();
+                String phone = regPhone.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     regEmail.setError("Email is required.");
@@ -74,6 +76,10 @@ public class Register extends AppCompatActivity {
                     regIC.setError("IC number is required.");
                     return;
                 }
+                if(TextUtils.isEmpty(phone)){
+                    regPhone.setError("Phone is required.");
+                    return;
+                }
 
                 if(psw.length() < 6){
                     regPsw.setError("Password must be more than 6 characters.");
@@ -83,14 +89,18 @@ public class Register extends AppCompatActivity {
                     regIC.setError("IC number must be 12 numbers.");
                     return;
                 }
+                if(phone.length() < 10 || phone.length() > 11){
+                    regPhone.setError("Phone must be between 10 to 11 numbers.");
+                    return;
+                }
 
                 //register the user in Firebase
                 fAuth.createUserWithEmailAndPassword(email, psw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ //if user is created successfully
-                            //put user email and ic into realtime database
-                            User userData = new User(email, ic);
+                            //put user email, ic and phone into realtime database
+                            User userData = new User(email, ic, phone);
                             String uID = fAuth.getCurrentUser().getUid();
                             node.child(uID).setValue(userData);
                             Toast.makeText(Register.this,"Account created.", Toast.LENGTH_SHORT).show();
