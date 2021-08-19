@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,18 +69,21 @@ public class BookingDate extends AppCompatActivity {
         addtocartbutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPopupDialog(type, image, price);
-            }
-        });
-
-        counButton.setOnClickListener (new View.OnClickListener ( ) {
-            @Override
-            public void onClick(View view) {
 
                 //  loadsave();
                 try {
                     String d1 = checkindate.getText ().toString ();
                     String d2 = checkoutdate.getText ().toString ();
+
+                    if(TextUtils.isEmpty(d1)){
+                        checkindate.setError("Check In Date is required.");
+                        return;
+                    }
+
+                    if(TextUtils.isEmpty(d2)){
+                        checkoutdate.setError("Check Out Date is required.");
+                        return;
+                    }
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                     Date date1 = simpleDateFormat.parse(d1);
@@ -99,15 +103,62 @@ public class BookingDate extends AppCompatActivity {
                         Toast.makeText(BookingDate.this, "nono: " + noOfDays, Toast.LENGTH_SHORT).show();
                     }
 
-               }
-             catch(Exception ex)
+                }
+                catch(Exception ex)
                 {
 
                     ex.printStackTrace();
                 }
-
+                createPopupDialog(type, image, price);
             }
         });
+
+//        counButton.setOnClickListener (new View.OnClickListener ( ) {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //  loadsave();
+//                try {
+//                    String d1 = checkindate.getText ().toString ();
+//                    String d2 = checkoutdate.getText ().toString ();
+//
+//                    if(TextUtils.isEmpty(d1)){
+//                        checkindate.setError("Check In Date is required.");
+//                        return;
+//                    }
+//
+//                    if(TextUtils.isEmpty(d2)){
+//                        checkoutdate.setError("Check Out Date is required.");
+//                        return;
+//                    }
+//
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//                    Date date1 = simpleDateFormat.parse(d1);
+//                    Date date2 = simpleDateFormat.parse(d2);
+//                    long difference = Math.abs(date1.getTime() - date2.getTime());
+//
+//
+//                    long differenceInMillis = date2.getTime() - date1.getTime();
+//                    float noOfDays = (differenceInMillis) / 1000f / 60f / 60f / 24f;
+//                    days.setText(""+ noOfDays);
+//                    Log.i("Count days success", "days"+days );
+//
+//
+//                    if(!days.getText().toString().isEmpty()) {
+//                        Toast.makeText(BookingDate.this, "Number of Day: " + noOfDays, Toast.LENGTH_SHORT).show();
+//                    }else{
+//                        Toast.makeText(BookingDate.this, "nono: " + noOfDays, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//               }
+//             catch(Exception ex)
+//                {
+//
+//                    ex.printStackTrace();
+//                }
+//
+//            }
+//        });
 
 
 
@@ -135,8 +186,12 @@ public class BookingDate extends AppCompatActivity {
                         checkindate.setText(dayOfMonth + "-"
                                 + (mon) + "-" + year);
 
+
+
                     }
                 }, mYear, mMonth, mDay);
+
+
                 datePickerDialog.show();
             }
         });
@@ -219,6 +274,7 @@ public class BookingDate extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String qty1 = String.valueOf(quantity.getText());
                 String inDate = String.valueOf(checkindate.getText());
                 String outDate = String.valueOf(checkoutdate.getText());
