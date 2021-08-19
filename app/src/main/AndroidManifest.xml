@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Secret_Hotel">
+        <activity android:name=".Payment"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
-
 
         <activity android:name=".CheckoutList" />
         <activity

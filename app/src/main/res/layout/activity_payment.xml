@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Payment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_paymentAmount"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:layout_marginBottom="4dp"
+                android:background="#FDF1DE"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.023" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="3dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/card_logo" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#FFDCA9"
+                android:text="Card Details"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="Card Holder Name"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/edt_cardHolderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/card_holder_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="3dp"
+                android:text="Card Number"
+                android:layout_marginHorizontal="30dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_cardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/card_number"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="3dp"
+                android:text="Card Expiry Date"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_marginHorizontal="30dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="30dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edt_cardExpiryDateMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/expiryDate_mon"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="/"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_cardExpiryDateYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/expiryDateYear"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CVV/CVV2"
+                android:layout_marginTop="3dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_cvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/cvv"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_pay"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#F4B861"
+                android:text="Pay Now" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_payment"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -3,4 +3,9 @@
     <string name="map_key" translatable="false">
         CwEAAAAAwb8YKL87GVUIJ9xWXSfsxH2uddVAPAbhi55DeRsXrf6yD1cOLDEYttR36pr9ja9y8TVsTYz+Dn6Gw8/LO0DYRGdi9fI=
     </string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiryDate_mon">MM</string>
+    <string name="expiryDateYear">YYYY</string>
+    <string name="cvv">CVV/CVV2</string>
 </resources>
