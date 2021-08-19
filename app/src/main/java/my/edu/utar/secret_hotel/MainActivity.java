@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnBookHistory = findViewById(R.id.btnBookHistory);
-        btnEvent = findViewById(R.id.btnEvent);
-        btnLoyalty = findViewById(R.id.btnLoyalty);
         btnAboutUs = findViewById(R.id.btnAboutUs);
 
         btnAboutUs.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +99,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Map.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEvent = findViewById(R.id.btnEvent);
+        btnEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PromotionEvents.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLoyalty = findViewById(R.id.btnLoyalty);
+        btnLoyalty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoyaltyProgram.class);
                 startActivity(intent);
             }
         });

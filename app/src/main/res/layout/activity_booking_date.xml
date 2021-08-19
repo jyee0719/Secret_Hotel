@@ -26,7 +26,6 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:editable="false"
         android:layout_marginLeft="10dp"
         android:id="@+id/checkindate"/>
 
@@ -51,15 +50,15 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/checkoutdate"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Count"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#A07855"
-        android:id="@+id/countdate"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Count"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:backgroundTint="#A07855"-->
+<!--        android:id="@+id/countdate"/>-->
 
 
     <LinearLayout

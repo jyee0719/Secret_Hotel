@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class BookingDate extends AppCompatActivity {
     TextView name,quantity;
     ImageButton add,remove;
     Button save;
-    int qty;
+    int qty=1;
 
     //save to database
     DatabaseReference databaseReference;
@@ -62,24 +63,27 @@ public class BookingDate extends AppCompatActivity {
         checkindate = findViewById (R.id.checkindate);
         checkoutdate = findViewById (R.id.checkoutdate);
         days = findViewById (R.id.date);
-        counButton = findViewById (R.id.countdate);
+        //counButton = findViewById (R.id.countdate);
         addtocartbutt =findViewById(R.id.cart);
 
         addtocartbutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPopupDialog(type, image, price);
-            }
-        });
-
-        counButton.setOnClickListener (new View.OnClickListener ( ) {
-            @Override
-            public void onClick(View view) {
 
                 //  loadsave();
                 try {
                     String d1 = checkindate.getText ().toString ();
                     String d2 = checkoutdate.getText ().toString ();
+
+                    if(TextUtils.isEmpty(d1)){
+                        checkindate.setError("Check In Date is required.");
+                        return;
+                    }
+
+                    if(TextUtils.isEmpty(d2)){
+                        checkoutdate.setError("Check Out Date is required.");
+                        return;
+                    }
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                     Date date1 = simpleDateFormat.parse(d1);
@@ -99,15 +103,62 @@ public class BookingDate extends AppCompatActivity {
                         Toast.makeText(BookingDate.this, "nono: " + noOfDays, Toast.LENGTH_SHORT).show();
                     }
 
-               }
-             catch(Exception ex)
+                }
+                catch(Exception ex)
                 {
 
                     ex.printStackTrace();
                 }
-
+                createPopupDialog(type, image, price);
             }
         });
+
+//        counButton.setOnClickListener (new View.OnClickListener ( ) {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //  loadsave();
+//                try {
+//                    String d1 = checkindate.getText ().toString ();
+//                    String d2 = checkoutdate.getText ().toString ();
+//
+//                    if(TextUtils.isEmpty(d1)){
+//                        checkindate.setError("Check In Date is required.");
+//                        return;
+//                    }
+//
+//                    if(TextUtils.isEmpty(d2)){
+//                        checkoutdate.setError("Check Out Date is required.");
+//                        return;
+//                    }
+//
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//                    Date date1 = simpleDateFormat.parse(d1);
+//                    Date date2 = simpleDateFormat.parse(d2);
+//                    long difference = Math.abs(date1.getTime() - date2.getTime());
+//
+//
+//                    long differenceInMillis = date2.getTime() - date1.getTime();
+//                    float noOfDays = (differenceInMillis) / 1000f / 60f / 60f / 24f;
+//                    days.setText(""+ noOfDays);
+//                    Log.i("Count days success", "days"+days );
+//
+//
+//                    if(!days.getText().toString().isEmpty()) {
+//                        Toast.makeText(BookingDate.this, "Number of Day: " + noOfDays, Toast.LENGTH_SHORT).show();
+//                    }else{
+//                        Toast.makeText(BookingDate.this, "nono: " + noOfDays, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//               }
+//             catch(Exception ex)
+//                {
+//
+//                    ex.printStackTrace();
+//                }
+//
+//            }
+//        });
 
 
 
@@ -135,8 +186,12 @@ public class BookingDate extends AppCompatActivity {
                         checkindate.setText(dayOfMonth + "-"
                                 + (mon) + "-" + year);
 
+
+
                     }
                 }, mYear, mMonth, mDay);
+
+
                 datePickerDialog.show();
             }
         });
@@ -204,6 +259,11 @@ public class BookingDate extends AppCompatActivity {
             public void onClick(View v) {
                 qty++;
                 quantity.setText(""+qty);
+                String qty1 = String.valueOf(quantity.getText());
+                int qty2=Integer.parseInt(qty1);
+                if(qty2>0){
+                    save.setEnabled(true);
+                }
             }
         });
 
@@ -212,6 +272,12 @@ public class BookingDate extends AppCompatActivity {
             public void onClick(View v) {
                 qty--;
                 quantity.setText(""+qty);
+                String qty1 = String.valueOf(quantity.getText());
+                int qty2=Integer.parseInt(qty1);
+                if(qty2<=0){
+                    save.setEnabled(false);
+                    Toast.makeText(BookingDate.this, "The Quantity Cannot be Zero or Negative", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -219,6 +285,7 @@ public class BookingDate extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String qty1 = String.valueOf(quantity.getText());
                 String inDate = String.valueOf(checkindate.getText());
                 String outDate = String.valueOf(checkoutdate.getText());
@@ -238,7 +305,11 @@ public class BookingDate extends AppCompatActivity {
                     parameters.put("image",image1);
                     databaseReference.child(cartID).setValue(parameters);
                     Log.i("Database: ", "Add is Successful");
+                    Toast.makeText(BookingDate.this, "Add To Cart Successfully", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+
+                    Intent intent = new Intent(BookingDate.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });

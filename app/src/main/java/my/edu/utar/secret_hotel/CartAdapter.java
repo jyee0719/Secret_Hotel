@@ -67,6 +67,8 @@ public class CartAdapter extends BaseAdapter {
                 .load(cart.getImage())
                 .into(image);
 
+        //convertView.setOnClickListener();
+
         return convertView;
     }
 
