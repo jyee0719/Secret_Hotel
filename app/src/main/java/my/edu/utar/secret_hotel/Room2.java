@@ -29,10 +29,10 @@ import java.util.Date;
 
 public class Room2 extends AppCompatActivity {
 
-    DatabaseReference databaseReference;
-    TextView rn, rd, rp;
-    ImageView imageView;
-    Button book;
+    private DatabaseReference databaseReference;
+    private TextView rn, rd, rp;
+    private ImageView imageView;
+    private Button book;
 
 
     @Override
@@ -48,31 +48,36 @@ public class Room2 extends AppCompatActivity {
         book = findViewById(R.id.book1);
         imageView = findViewById(R.id.roomimageview1);
 
-
+        //get the Rooms path in firebase and get the child
         databaseReference = FirebaseDatabase.getInstance().getReference("Rooms");
         databaseReference.child("room2").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                //get and set the firebase data according to attributes name
                 String type = snapshot.child("type").getValue().toString();
                 String desc = snapshot.child("description").getValue().toString();
                 String image = snapshot.child("image").getValue().toString();
                 String price = snapshot.child("price").getValue().toString();
 
+                //set text
                 rn.setText(type);
                 rd.setText(desc);
                 rp.setText(price);
 
+                //set room image
                 Glide.with(Room2.this)
                         .load(image)
                         .into(imageView);
 
+                //when users click on book button
                 book.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String type = rn.getText().toString();
                         String price = rp.getText().toString();
                         Intent intent = new Intent(Room2.this, BookingDate.class);
+
+                        //for data passing to another activity
                         intent.putExtra("type", type);
                         intent.putExtra("price", price);
                         intent.putExtra("image", image);

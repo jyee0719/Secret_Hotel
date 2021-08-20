@@ -24,16 +24,12 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,HuaweiM
     private SupportMapFragment mSupportMapFragment;
     private HuaweiMap hMap;
     private static final String TAG = "Map";
-    Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         requestPermission();
-        if(isGMS()) {
-        } else if(isHMS()) {
-        }
         mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mSupportMapFragment.getMapAsync(this);
 
@@ -58,11 +54,14 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,HuaweiM
         }
     }
 
+    //async the map
     @Override
     public void onMapReady(HuaweiMap huaweiMap) {
         hMap = huaweiMap;
         hMap.setMyLocationEnabled(true);
         hMap.setOnMyLocationButtonClickListener(this);
+
+        // add a marker to this location
         LatLng hotel = new LatLng(3.885664568136127, 100.93512881077277);
         hMap.addMarker(new MarkerOptions().position(hotel)
                 .title("We Are Here"));
@@ -93,10 +92,4 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,HuaweiM
     @Override
     protected void onStart() { super.onStart(); }
 
-    public boolean  isGMS(){
-        return GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this) == com.google.android.gms.common.ConnectionResult.SUCCESS;
-    }
-    public boolean  isHMS(){
-        return HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this) == com.huawei.hms.api.ConnectionResult.SUCCESS;
-    }
 }

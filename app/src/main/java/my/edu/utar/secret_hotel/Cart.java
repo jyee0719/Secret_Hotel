@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Cart {
     private String name, price, quantity, checkin,checkout,duration, image;
 
+    //constructor of Cart
     public Cart() {
 
     }

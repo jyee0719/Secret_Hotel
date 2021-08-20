@@ -45,10 +45,11 @@ public class CartAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        //set the view to cart.xml
+        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.cart, null);
 
+        //Declaration
         TextView name = convertView.findViewById(R.id.roomname);
         TextView quantity = convertView.findViewById(R.id.roomqty);
         TextView price = convertView.findViewById(R.id.roomprice);
@@ -56,6 +57,7 @@ public class CartAdapter extends BaseAdapter {
         TextView checkin = convertView.findViewById(R.id.checkin);
         TextView checkout = convertView.findViewById(R.id.checkout);
 
+        //get the item in the array list and set the data
         Cart cart = cartArrayList.get(position);
         name.setText(cart.getName());
         quantity.setText(cart.getQuantity());
@@ -63,12 +65,12 @@ public class CartAdapter extends BaseAdapter {
         checkin.setText(cart.getCheckin());
         checkout.setText(cart.getCheckout());
 
+        //set the image using url through Glide
         Glide.with(context)
                 .load(cart.getImage())
                 .into(image);
 
-        //convertView.setOnClickListener();
-
+        // return view
         return convertView;
     }
 

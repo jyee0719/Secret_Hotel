@@ -45,26 +45,28 @@ public class RoomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        //set the view to single_room.xml
+        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.single_room, null);
 
-
+        //Declaration
         TextView type = convertView.findViewById(R.id.roomname);
         TextView desc = convertView.findViewById(R.id.roomdesc);
         TextView price = convertView.findViewById(R.id.roomprice);
         ImageView image = convertView.findViewById(R.id.roomimageview);
 
+        //get the item in the array list and set the data
         Room room = roomArrayList.get(position);
         type.setText(room.getRoomType());
         desc.setText(room.getRoomDesc());
         price.setText(room.getRoomPrice());
 
+        //set the image using url through Glide
         Glide.with(context)
                 .load(room.getRoomImageURL())
                 .into(image);
 
-
+        // return view
         return convertView;
     }
 

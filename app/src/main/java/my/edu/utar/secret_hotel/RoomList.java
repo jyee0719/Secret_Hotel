@@ -25,10 +25,9 @@ import java.util.ArrayList;
 public class RoomList extends AppCompatActivity {
 
     private DatabaseReference databaseReference, root;
-    ArrayList<Room> roomArrayList;
-    Context context;
-    RoomAdapter roomAdapter;
-    ListView listView;
+    private ArrayList<Room> roomArrayList;
+    private RoomAdapter roomAdapter;
+    private ListView listView;
 
 
 
@@ -44,21 +43,25 @@ public class RoomList extends AppCompatActivity {
 
         roomArrayList=new ArrayList<>();
 
+            //get the Rooms path
             databaseReference = FirebaseDatabase.getInstance().getReference("Rooms");
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    //get the database data according to the attribute name and set it to the room
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                         Room room = new Room();
                         room.setRoomType(dataSnapshot.child("type").getValue().toString());
                         room.setRoomDesc(dataSnapshot.child("description").getValue().toString());
                         room.setRoomImageURL(dataSnapshot.child("image").getValue().toString());
                         room.setRoomPrice(dataSnapshot.child("price").getValue().toString());
-                        //Room room = dataSnapshot.getValue(Room.class);
+                        //add the single room item to arraylist
                         roomArrayList.add(room);
                     }
+                    //set the adapter to the listview
                     roomAdapter = new RoomAdapter(roomArrayList,RoomList.this);
                     listView.setAdapter(roomAdapter);
+                    //update the view when data change
                     roomAdapter.notifyDataSetChanged();
 
                 }
@@ -75,6 +78,7 @@ public class RoomList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //start different activity according to the on click position of the listview
                 if(position == 0)
                 {
                     Intent intent = new Intent(view.getContext(),SingleRoom.class);
