@@ -87,7 +87,7 @@ public class CheckoutList extends AppCompatActivity {
 
                         double totalPrice = cartArrayList.getTotalPrice();
                         total_price.setText("RM "+totalPrice + "");
-
+                        //If the user inputs promocode and press the "USE" button, the totalPrice will be deducted
                         use.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
