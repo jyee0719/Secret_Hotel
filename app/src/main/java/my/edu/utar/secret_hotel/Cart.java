@@ -76,6 +76,8 @@ public class Cart {
         this.image = image;
     }
 
+    // Avoid duplication record in room cart and check out
+    // When one booking is occurring the duplicated room name, check-in date and check-out date, the system will automatically added on the quantity
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
