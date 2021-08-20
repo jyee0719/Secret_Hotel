@@ -34,6 +34,7 @@ public class HistoryList extends AppCompatActivity {
         root = FirebaseDatabase.getInstance().getReference("History");
         cartArrayList = new CartItemList();
 
+        // Retrieve the realtime database from cart
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         if (!uid.isEmpty()) {
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");

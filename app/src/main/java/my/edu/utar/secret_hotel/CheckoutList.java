@@ -63,6 +63,7 @@ public class CheckoutList extends AppCompatActivity {
 
             cartArrayList = new CartItemList();
 
+            // Retrieve the realtime database from cart to show the all the room is booked by users
             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             if(!uid.isEmpty()) {
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -85,8 +86,10 @@ public class CheckoutList extends AppCompatActivity {
                         checkout_listView.setAdapter(checkout_Adapter);
                         checkout_Adapter.notifyDataSetChanged();
 
+                        // Display the total price in checkout
                         double totalPrice = cartArrayList.getTotalPrice();
                         total_price.setText("RM "+totalPrice + "");
+
 
                         use.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -123,6 +126,7 @@ public class CheckoutList extends AppCompatActivity {
             proceedPayment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Pass total price to payment class
                     String total_price2 = total_price.getText().toString();
                     Intent intent = new Intent(CheckoutList.this, Payment.class);
                     intent.putExtra("payment_amount", total_price2);

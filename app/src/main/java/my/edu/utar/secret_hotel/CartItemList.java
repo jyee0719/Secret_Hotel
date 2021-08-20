@@ -25,12 +25,12 @@ public class CartItemList {
             p += Double.valueOf(c.getPrice()) * Double.valueOf(c.getQuantity()) * d;
         }
         Log.i("Testing", p + "");
-        // Got error is it?
         this.setTotalPrice(p);
     }
 
     public void addItem(Cart c){
-        // Duplication
+        // Avoid duplication record in room cart and check out
+        // When one booking is occurring the duplicated room name, check-in date and check-out date, the system will automatically added on the quantity
         if(cartArrayList.contains(c)){
             Cart tmp = getItem(c.getName(), c.getCheckin(), c.getCheckout());
             int q = Integer.valueOf(tmp.getQuantity()) + Integer.valueOf(c.getQuantity());

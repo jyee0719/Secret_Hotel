@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// historyAdapter is to hold the history data
 public class HistoryAdapter extends BaseAdapter {
     private final ArrayList<Cart> cartArrayList;
     private final Context context;

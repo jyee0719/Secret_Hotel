@@ -74,55 +74,63 @@ public class Payment extends AppCompatActivity {
 
                 ++count;
 
-
+                        // When the card holder name is empty, the error message will be displayed
                         if (cardHolderName.isEmpty()) {
                             edt_cardHolderName.setError("Card holder name is required!");
                             edt_cardHolderName.requestFocus();
                             return;
                         }
 
+                        // When the card number is empty, the error message will be displayed
                         if (cardNumber.isEmpty()) {
                             edt_cardNumber.setError("Card number is required!");
                             edt_cardNumber.requestFocus();
                             return;
                         }
 
+                        // When the card number is not in 12-digits, the error message will be displayed
                         if (cardNumber.length() != 12) {
                             edt_cardNumber.setError("Card number should be 12-digits!");
                             edt_cardNumber.requestFocus();
                             return;
                         }
 
+                        // When the month of bank card expiry date is empty, the error message will be displayed
                         if (expiryDate_mon.isEmpty()) {
                             edt_expiryDate_mon.setError("The month of card expiry date is required!");
                             edt_expiryDate_mon.requestFocus();
                             return;
                         }
 
+                        // When the month of bank card expiry date is not in 2-digits, the error message will be displayed
                         if (expiryDate_mon.length() != 2) {
                             edt_expiryDate_mon.setError("The month of card expiry date should be 2-digits!");
                             edt_expiryDate_mon.requestFocus();
                             return;
                         }
 
+                        // When the year of bank card expiry date is empty, the error message will be displayed
                         if (expiryDate_year.isEmpty()) {
                             edt_expiryDate_year.setError("The year of card expiry date is required!");
                             edt_expiryDate_year.requestFocus();
                             return;
                         }
 
+                        // When the year of bank card expiry date is not in 4-digits, the error message will be displayed
                         if (expiryDate_year.length() != 4) {
                             edt_expiryDate_year.setError("The year of card expiry date should be 2-digits!");
                             edt_expiryDate_year.requestFocus();
                             return;
                         }
 
+                        // When the cvv number is empty, the error message will be displayed
                         if (cvv.isEmpty()) {
                             edt_cvv.setError("CVV is required!");
                             edt_cvv.requestFocus();
                             return;
                         }
 
+                        // When the cvv number is not in 3-digits, the error message will be displayed
                         if (cvv.length() != 3){
                             edt_cvv.setError("CVV should be 3-digits!");
                             edt_cvv.requestFocus();
@@ -131,6 +139,7 @@ public class Payment extends AppCompatActivity {
                         progressBar_payment.setVisibility(View.VISIBLE);
                         count1 = String.valueOf(count);
 
+                        // Create the payment in realtime firebase
                         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         if(!uid.isEmpty()) {
                             databaseReference = FirebaseDatabase.getInstance().getReference("Payment");
