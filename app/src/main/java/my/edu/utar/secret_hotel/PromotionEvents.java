@@ -16,6 +16,7 @@ public class PromotionEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotion_events);
 
+        //button to let user navigate to booking page
         bookNow = findViewById(R.id.booknow);
         bookNow.setOnClickListener(new View.OnClickListener() {
             @Override

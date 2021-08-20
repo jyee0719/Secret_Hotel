@@ -47,35 +47,41 @@ public class LoyaltyProgram extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Payment");
         userID = user.getUid();
 
+
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                // create user object and call it as user profile
+                // get count value from firebase
                 int count = Integer.parseInt(snapshot.child("count").getValue().toString());
+                //set progress into progress bar
                 progress.setProgress(count);
                 int progressCount = progress.getProgress();
+                //calculate remaining checkout count to get offer
                 int offer10 = 5 - progressCount;
-                int offer15 = 10 -progressCount;
+                int offer15 = 10 - progressCount;
 
+                //show the current checkout count to the user
                 currentProgress.setText("Current Progress: " + progressCount +" Booking(s)");
                 currentProgress.setBackgroundColor(Color.parseColor("#715943"));
 
+                //show the number of counts left to get promo code
                 checkoutPromo.setText("Book for " + offer10 +" more time(s) to get a 10 % promo!"
                         + "\nBook for " + offer15 + " more time(s) to get a 15 % promo!" );
                 checkoutPromo.setBackgroundColor(Color.parseColor("#715943"));
 
-                if(progress.getProgress() >= 5)
+                //if the number of bookings reached 5 or 10 then show the promo code to the user
+                if(progress.getProgress() >= 5 && progress.getProgress()< 10)
                 {
                     promoCode.setText("PROMO CODE: 10OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
                     checkoutPromo.setText("Book for " + offer15 + " more time(s) to get a 15 % promo!");
                 }
-                else if(progress.getProgress() == 10)
+                else if(progress.getProgress() >= 10)
                 {
                     promoCode.setText("PROMO CODE: 15OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
                     checkoutPromo.setText("");
-                    checkoutPromo.setBackgroundColor(Color.parseColor("#F5F5EF"));
+                    checkoutPromo.setBackgroundColor(Color.parseColor("#D4B996"));
                 }
             }
 
@@ -85,7 +91,7 @@ public class LoyaltyProgram extends AppCompatActivity {
             }
         });
 
-
+        //home button to navigate back to home
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

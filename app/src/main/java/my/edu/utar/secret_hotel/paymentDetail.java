@@ -2,17 +2,19 @@ package my.edu.utar.secret_hotel;
 
 public class paymentDetail {
     private String total_price, card_holder_name, card_number, cardExpiryDate_Mon, cardExpiryDate_Year, cvv;
+    private int count;
 
     public paymentDetail() {
     }
 
-    public paymentDetail(String total_price, String card_holder_name, String card_number, String cardExpiryDate_Mon, String cardExpiryDate_Year, String cvv) {
+    public paymentDetail(String total_price, String card_holder_name, String card_number, String cardExpiryDate_Mon, String cardExpiryDate_Year,String cvv, int count) {
         this.total_price = total_price;
         this.card_holder_name = card_holder_name;
         this.card_number = card_number;
         this.cardExpiryDate_Mon = cardExpiryDate_Mon;
         this.cardExpiryDate_Year = cardExpiryDate_Year;
         this.cvv = cvv;
+        this.count = 0;
     }
 
     public String getTotal_price() {
@@ -59,7 +61,9 @@ public class paymentDetail {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
+    public void setCvv(String cvv) { this.cvv = cvv; }
+
+    public int getCount(){ return count; }
+
+    public void setCount(){ this.count = count; }
 }
