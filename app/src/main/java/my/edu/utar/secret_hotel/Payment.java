@@ -37,11 +37,8 @@ public class Payment extends AppCompatActivity {
     private EditText edt_cvv;
     private Button btn_pay;
     private ProgressBar progressBar_payment;
-    String payment_amount,counts;
-
-    private FirebaseUser user;
-    private DatabaseReference reference;
-    private String userID;
+    String payment_amount,count1;
+    int count = 0;
 
     DatabaseReference databaseReference;
 
@@ -75,17 +72,8 @@ public class Payment extends AppCompatActivity {
                 String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
                 String cvv = edt_cvv.getText().toString().trim();
 
-                user = FirebaseAuth.getInstance().getCurrentUser();
-                reference = FirebaseDatabase.getInstance().getReference("Payment");
-                userID = user.getUid();
+                ++count;
 
-
-                reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        // create user object and call it as user profile
-
-                        int count = Integer.parseInt(snapshot.child("count").getValue().toString());
 
                         if (cardHolderName.isEmpty()) {
                             edt_cardHolderName.setError("Card holder name is required!");
@@ -141,7 +129,7 @@ public class Payment extends AppCompatActivity {
                         }
 
                         progressBar_payment.setVisibility(View.VISIBLE);
-                        counts = String.valueOf(++count);
+                        count1 = String.valueOf(count);
 
                         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         if(!uid.isEmpty()) {
@@ -154,22 +142,14 @@ public class Payment extends AppCompatActivity {
                             parameters.put("card_expiry_date_year", expiryDate_year);
                             parameters.put("cvv", cvv);
                             parameters.put("payment_amount", payment_amount);
-                            parameters.put("count",counts);
+                            parameters.put("count",count1);
                             databaseReference.child(uid).setValue(parameters);
                             Log.i("Database: ", "Add is Successful");
                             Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
 
                             startActivity(new Intent(Payment.this,MainActivity.class));
-
                         }
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                        Toast.makeText(Payment.this,"Something wrong happened",Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
         });
     }
 }

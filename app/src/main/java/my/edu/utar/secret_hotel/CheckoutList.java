@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +29,7 @@ public class CheckoutList extends AppCompatActivity {
 
         private TextView currentDate;
         private Calendar calendar;
-        private String date;
+        private String date,promocode;
         private SimpleDateFormat dateFormat;
         private DatabaseReference databaseReference, root;
         private CartItemList cartArrayList;
@@ -35,7 +37,8 @@ public class CheckoutList extends AppCompatActivity {
         private checkoutAdapter checkout_Adapter;
         private ListView checkout_listView;
         private TextView total_price;
-        private Button proceedPayment;
+        private Button proceedPayment,use;
+        private EditText promo;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class CheckoutList extends AppCompatActivity {
             checkout_listView = findViewById(R.id.checkout_listView);
             proceedPayment = findViewById(R.id.btn_proceedPayment);
             total_price = findViewById(R.id.tv_totalPrice);
+            promo = findViewById(R.id.promo);
+            use = findViewById(R.id.addcode);
             root = FirebaseDatabase.getInstance().getReference("Checkout");
 
             cartArrayList = new CartItemList();
@@ -83,6 +88,26 @@ public class CheckoutList extends AppCompatActivity {
                         double totalPrice = cartArrayList.getTotalPrice();
                         total_price.setText("RM "+totalPrice + "");
 
+                        use.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                double totalPrice = cartArrayList.getTotalPrice();
+                                promocode =promo.getText().toString().trim();
+                                if(promocode.equals("10OFF"))
+                                {
+                                    totalPrice = totalPrice*0.9;
+                                    total_price.setText("RM "+ totalPrice + "");
+                                }
+                                else if(promocode.equals("15OFF"))
+                                {
+                                    totalPrice = totalPrice*0.85;
+                                    total_price.setText("RM "+ totalPrice + "");
+                                }
+                                else {
+                                    Toast.makeText(CheckoutList.this,"Invalid code Entered",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
 
                     @Override
