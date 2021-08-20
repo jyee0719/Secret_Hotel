@@ -72,6 +72,9 @@
         <activity
             android:name=".CartList"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Location"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
