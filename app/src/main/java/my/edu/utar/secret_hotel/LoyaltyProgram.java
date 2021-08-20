@@ -64,7 +64,7 @@ public class LoyaltyProgram extends AppCompatActivity {
                         + "\nBook for " + offer15 + " more time(s) to get a 15 % promo!" );
                 checkoutPromo.setBackgroundColor(Color.parseColor("#715943"));
 
-                if(progress.getProgress() >= 5)
+                if(progress.getProgress() >= 5 && progress.getProgress()< 10)
                 {
                     promoCode.setText("PROMO CODE: 10OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
@@ -75,7 +75,7 @@ public class LoyaltyProgram extends AppCompatActivity {
                     promoCode.setText("PROMO CODE: 15OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
                     checkoutPromo.setText("");
-                    checkoutPromo.setBackgroundColor(Color.parseColor("#F5F5EF"));
+                    checkoutPromo.setBackgroundColor(Color.parseColor("#D4B996"));
                 }
             }
 
