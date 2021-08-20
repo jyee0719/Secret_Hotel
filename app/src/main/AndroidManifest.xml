@@ -21,9 +21,6 @@
             android:name=".AboutUs"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".PromotionEvents"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".HistoryList"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -65,6 +62,12 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RoomList"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Location"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PromotionEvents"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CartList"

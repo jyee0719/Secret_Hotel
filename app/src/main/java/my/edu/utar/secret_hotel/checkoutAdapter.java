@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// To hold the checkout data
 public class checkoutAdapter extends BaseAdapter {
     private final ArrayList<Cart> cartArrayList;
     private final Context context;

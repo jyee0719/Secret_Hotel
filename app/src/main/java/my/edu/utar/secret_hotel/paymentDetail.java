@@ -1,5 +1,6 @@
 package my.edu.utar.secret_hotel;
 
+// paymentDetail is to store the payment detail
 public class paymentDetail {
     private String total_price, card_holder_name, card_number, cardExpiryDate_Mon, cardExpiryDate_Year, cvv;
     private int count;
