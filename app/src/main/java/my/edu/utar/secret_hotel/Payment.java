@@ -16,8 +16,13 @@ import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 import com.huawei.hmf.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
@@ -33,7 +38,10 @@ public class Payment extends AppCompatActivity {
     private Button btn_pay;
     private ProgressBar progressBar_payment;
     String payment_amount,counts;
-    int count=0;
+
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
 
     DatabaseReference databaseReference;
 
@@ -56,6 +64,8 @@ public class Payment extends AppCompatActivity {
         payment_amount = intent.getStringExtra("payment_amount");
         tv_payment_Amount.setText(payment_amount);
 
+
+
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,83 +74,101 @@ public class Payment extends AppCompatActivity {
                 String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
                 String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
                 String cvv = edt_cvv.getText().toString().trim();
-                ++count;
-                counts = String.valueOf(count);
 
-                if (cardHolderName.isEmpty()) {
-                    edt_cardHolderName.setError("Card holder name is required!");
-                    edt_cardHolderName.requestFocus();
-                    return;
-                }
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                reference = FirebaseDatabase.getInstance().getReference("Payment");
+                userID = user.getUid();
 
-                if (cardNumber.isEmpty()) {
-                    edt_cardNumber.setError("Card number is required!");
-                    edt_cardNumber.requestFocus();
-                    return;
-                }
 
-                if (cardNumber.length() != 12) {
-                    edt_cardNumber.setError("Card number should be 12-digits!");
-                    edt_cardNumber.requestFocus();
-                    return;
-                }
+                reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        // create user object and call it as user profile
 
-                if (expiryDate_mon.isEmpty()) {
-                    edt_expiryDate_mon.setError("The month of card expiry date is required!");
-                    edt_expiryDate_mon.requestFocus();
-                    return;
-                }
+                        int count = Integer.parseInt(snapshot.child("count").getValue().toString());
 
-                if (expiryDate_mon.length() != 2) {
-                    edt_expiryDate_mon.setError("The month of card expiry date should be 2-digits!");
-                    edt_expiryDate_mon.requestFocus();
-                    return;
-                }
+                        if (cardHolderName.isEmpty()) {
+                            edt_cardHolderName.setError("Card holder name is required!");
+                            edt_cardHolderName.requestFocus();
+                            return;
+                        }
 
-                if (expiryDate_year.isEmpty()) {
-                    edt_expiryDate_year.setError("The year of card expiry date is required!");
-                    edt_expiryDate_year.requestFocus();
-                    return;
-                }
+                        if (cardNumber.isEmpty()) {
+                            edt_cardNumber.setError("Card number is required!");
+                            edt_cardNumber.requestFocus();
+                            return;
+                        }
 
-                if (expiryDate_year.length() != 4) {
-                    edt_expiryDate_year.setError("The year of card expiry date should be 2-digits!");
-                    edt_expiryDate_year.requestFocus();
-                    return;
-                }
+                        if (cardNumber.length() != 12) {
+                            edt_cardNumber.setError("Card number should be 12-digits!");
+                            edt_cardNumber.requestFocus();
+                            return;
+                        }
 
-                if (cvv.isEmpty()) {
-                    edt_cvv.setError("CVV is required!");
-                    edt_cvv.requestFocus();
-                    return;
-                }
+                        if (expiryDate_mon.isEmpty()) {
+                            edt_expiryDate_mon.setError("The month of card expiry date is required!");
+                            edt_expiryDate_mon.requestFocus();
+                            return;
+                        }
 
-                if (cvv.length() != 3){
-                    edt_cvv.setError("CVV should be 3-digits!");
-                    edt_cvv.requestFocus();
-                }
+                        if (expiryDate_mon.length() != 2) {
+                            edt_expiryDate_mon.setError("The month of card expiry date should be 2-digits!");
+                            edt_expiryDate_mon.requestFocus();
+                            return;
+                        }
 
-                progressBar_payment.setVisibility(View.VISIBLE);
+                        if (expiryDate_year.isEmpty()) {
+                            edt_expiryDate_year.setError("The year of card expiry date is required!");
+                            edt_expiryDate_year.requestFocus();
+                            return;
+                        }
 
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                if(!uid.isEmpty()) {
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Payment");
-                    String cartID = databaseReference.push().getKey();
-                    HashMap<String, String> parameters = new HashMap<>();
-                    parameters.put("card_holder_name", cardHolderName);
-                    parameters.put("card_number", cardNumber);
-                    parameters.put("card_expiry_date_mon", expiryDate_mon);
-                    parameters.put("card_expiry_date_year", expiryDate_year);
-                    parameters.put("cvv", cvv);
-                    parameters.put("payment_amount", payment_amount);
-                    parameters.put("count",counts);
-                    databaseReference.child(uid).setValue(parameters);
-                    Log.i("Database: ", "Add is Successful");
-                    Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
+                        if (expiryDate_year.length() != 4) {
+                            edt_expiryDate_year.setError("The year of card expiry date should be 2-digits!");
+                            edt_expiryDate_year.requestFocus();
+                            return;
+                        }
 
-                    startActivity(new Intent(Payment.this,MainActivity.class));
+                        if (cvv.isEmpty()) {
+                            edt_cvv.setError("CVV is required!");
+                            edt_cvv.requestFocus();
+                            return;
+                        }
 
-                }
+                        if (cvv.length() != 3){
+                            edt_cvv.setError("CVV should be 3-digits!");
+                            edt_cvv.requestFocus();
+                        }
+
+                        progressBar_payment.setVisibility(View.VISIBLE);
+                        counts = String.valueOf(++count);
+
+                        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        if(!uid.isEmpty()) {
+                            databaseReference = FirebaseDatabase.getInstance().getReference("Payment");
+                            String cartID = databaseReference.push().getKey();
+                            HashMap<String, String> parameters = new HashMap<>();
+                            parameters.put("card_holder_name", cardHolderName);
+                            parameters.put("card_number", cardNumber);
+                            parameters.put("card_expiry_date_mon", expiryDate_mon);
+                            parameters.put("card_expiry_date_year", expiryDate_year);
+                            parameters.put("cvv", cvv);
+                            parameters.put("payment_amount", payment_amount);
+                            parameters.put("count",counts);
+                            databaseReference.child(uid).setValue(parameters);
+                            Log.i("Database: ", "Add is Successful");
+                            Toast.makeText(Payment.this, "Payment is successful", Toast.LENGTH_SHORT).show();
+
+                            startActivity(new Intent(Payment.this,MainActivity.class));
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                        Toast.makeText(Payment.this,"Something wrong happened",Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

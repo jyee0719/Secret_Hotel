@@ -57,7 +57,6 @@ public class LoyaltyProgram extends AppCompatActivity {
                 int offer10 = 5 - progressCount;
                 int offer15 = 10 -progressCount;
 
-
                 currentProgress.setText("Current Progress: " + progressCount +" Booking(s)");
                 currentProgress.setBackgroundColor(Color.parseColor("#715943"));
 
@@ -65,7 +64,7 @@ public class LoyaltyProgram extends AppCompatActivity {
                         + "\nBook for " + offer15 + " more time(s) to get a 15 % promo!" );
                 checkoutPromo.setBackgroundColor(Color.parseColor("#715943"));
 
-                if(progress.getProgress() == 5)
+                if(progress.getProgress() >= 5)
                 {
                     promoCode.setText("PROMO CODE: 10OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
