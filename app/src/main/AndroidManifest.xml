@@ -14,8 +14,11 @@
         <activity android:name=".Payment"></activity>
 
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
+            android:name="com.huawei.hms.client.appid"
             android:value="@string/map_key" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/gmap_key" />
         <activity android:name=".CheckoutList" />
         <activity
             android:name=".AboutUs"

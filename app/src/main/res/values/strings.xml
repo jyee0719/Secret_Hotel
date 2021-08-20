@@ -3,6 +3,9 @@
     <string name="map_key" translatable="false">
         CwEAAAAARTvJ56yEUw4y7PxPOm4SudEEnhZm+FqKLXNSj/TPaSFsJzA4VJ2I3x7RWFz+T/gapS6KdpQM2MFLLBnulzy7TbnujfI=
     </string>
+    <string name="gmap_key" translatable="false">
+        AIzaSyC_6QvYzCsswVpYWQICJio9fFeRmWlur9I
+    </string>
     <string name="card_holder_name">Card Holder Name</string>
     <string name="card_number">Card Number</string>
     <string name="expiryDate_mon">MM</string>
