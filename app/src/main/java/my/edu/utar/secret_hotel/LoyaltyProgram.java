@@ -81,7 +81,7 @@ public class LoyaltyProgram extends AppCompatActivity {
                     promoCode.setText("PROMO CODE: 15OFF");
                     promoCode.setBackgroundColor(Color.parseColor("#A07855"));
                     checkoutPromo.setText("");
-                    checkoutPromo.setBackgroundColor(Color.parseColor("#D4B996"));
+                    checkoutPromo.setBackgroundColor(Color.parseColor("#F5F5EF"));
                 }
             }
 
