@@ -134,6 +134,7 @@ public class Payment extends AppCompatActivity {
                         if (cvv.length() != 3){
                             edt_cvv.setError("CVV should be 3-digits!");
                             edt_cvv.requestFocus();
+                            return;
                         }
 
                         progressBar_payment.setVisibility(View.VISIBLE);
