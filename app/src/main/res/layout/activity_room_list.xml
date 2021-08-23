@@ -12,6 +12,6 @@
     android:layout_height="match_parent"
     android:id="@+id/listview"
     android:layout_margin="10dp"
-    android:background="#ffffff"/>
+    android:background="#F5F5EF"/>
 
 </RelativeLayout>
