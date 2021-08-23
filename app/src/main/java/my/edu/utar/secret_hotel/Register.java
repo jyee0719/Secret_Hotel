@@ -35,8 +35,11 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //enable Back button to back to Main Menu
         getSupportActionBar().setTitle("Register A New Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         regIC = findViewById(R.id.regIC);
         regEmail = findViewById(R.id.regEmail);
         regPsw = findViewById(R.id.regPsw);
@@ -44,6 +47,7 @@ public class Register extends AppCompatActivity {
         btnReg = findViewById(R.id.btnReg);
         btnToLogin = findViewById(R.id.btnToLogin);
 
+        //initialize firebase
         fAuth = FirebaseAuth.getInstance();
         //realtime database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,11 +64,13 @@ public class Register extends AppCompatActivity {
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //retrieve value from the EditText
                 String email = regEmail.getText().toString().trim();
                 String psw = regPsw.getText().toString().trim();
                 String ic = regIC.getText().toString().trim();
                 String phone = regPhone.getText().toString().trim();
 
+                //check if the value entered by user fulfill the condition or not
                 if(TextUtils.isEmpty(email)){
                     regEmail.setError("Email is required.");
                     return;

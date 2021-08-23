@@ -14,6 +14,7 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
+        //enable Back button to back to Main Menu
         getSupportActionBar().setTitle("Restaurant Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

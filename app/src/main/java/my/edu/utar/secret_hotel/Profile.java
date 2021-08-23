@@ -42,8 +42,10 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        //enable Back button to back to Main Menu
         getSupportActionBar().setTitle("Profile Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         email = findViewById(R.id.profileEmail);
         email.setEnabled(false);
         ic = findViewById(R.id.profileIC);
@@ -51,20 +53,25 @@ public class Profile extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         btnUpdate = findViewById(R.id.btnUpdate);
 
+        //initialize firebase
         fAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        //get current userID
         userID = fAuth.getUid();
 
+        //find the userID and retrieve its data
         databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
 
+                //if the user is login, get the user details from Firebase
                 if(userProfile != null){
                     String email1 = userProfile.getEmail();
                     String ic1 = userProfile.getIC();
                     String phone1 = userProfile.getPhone();
 
+                    //display the user details
                     email.setText(email1);
                     ic.setText(ic1);
                     phone.setText(phone1);
@@ -77,6 +84,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        //logout button and direct the user to Main Menu
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,12 +94,15 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        //update profile
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //retrieve the value entered by the user in the EditText
                 String newIC = ic.getText().toString();
                 String newPhone = phone.getText().toString();
                 HashMap hashMap = new HashMap();
+                //update the value to Firebase
                 hashMap.put("ic", newIC);
                 hashMap.put("phone", newPhone);
 

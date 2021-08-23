@@ -37,14 +37,18 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //enable Back button to back to Main Menu
         getSupportActionBar().setTitle("Login Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         loginEmail = findViewById(R.id.loginEmail);
         loginPsw = findViewById(R.id.loginPsw);
         btnLogin = findViewById(R.id.btnLogin);
         btnToReg = findViewById(R.id.btnToReg);
         btnFgtPsw = findViewById(R.id.btnFgtPsw);
 
+        //initialize firebase
         fAuth = FirebaseAuth.getInstance();
 
         btnToReg.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +63,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText resetEmail = new EditText(v.getContext());
+
+                //popup dialog for users to enter the email to receive the reset link
                 AlertDialog.Builder resetPswDialog = new AlertDialog.Builder(v.getContext());
                 resetPswDialog.setTitle("Reset password?");
                 resetPswDialog.setMessage("Enter your email to receive reset link: ");
@@ -100,6 +106,7 @@ public class Login extends AppCompatActivity {
                 String email = loginEmail.getText().toString().trim();
                 String psw = loginPsw.getText().toString().trim();
 
+                //check the value entered by user whether it fulfills condition or not
                 if(TextUtils.isEmpty(email)){
                     loginEmail.setError("Email is required.");
                     return;

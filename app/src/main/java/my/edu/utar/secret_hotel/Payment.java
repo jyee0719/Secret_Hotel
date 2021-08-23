@@ -88,8 +88,8 @@ public class Payment extends AppCompatActivity {
                             return;
                         }
 
-                        // When the card number is not in 12-digits, the error message will be displayed
-                        if (cardNumber.length() != 12) {
+                        // When the card number is not in 16-digits, the error message will be displayed
+                        if (cardNumber.length() != 16) {
                             edt_cardNumber.setError("Card number should be 12-digits!");
                             edt_cardNumber.requestFocus();
                             return;
