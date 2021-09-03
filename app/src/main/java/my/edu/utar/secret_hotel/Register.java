@@ -25,11 +25,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import static android.content.ContentValues.TAG;
 
+import java.util.HashMap;
+
 public class Register extends AppCompatActivity {
 
     EditText regEmail, regPsw, regIC, regPhone;
     Button btnReg, btnToLogin;
     FirebaseAuth fAuth;
+    DatabaseReference databaseReference;
+    String count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class Register extends AppCompatActivity {
         regPhone = findViewById(R.id.regPhone);
         btnReg = findViewById(R.id.btnReg);
         btnToLogin = findViewById(R.id.btnToLogin);
+        count = Integer.toString(0);
 
         //initialize firebase
         fAuth = FirebaseAuth.getInstance();
@@ -110,6 +115,11 @@ public class Register extends AppCompatActivity {
                             User userData = new User(email, ic, phone);
                             String uID = fAuth.getCurrentUser().getUid();
                             node.child(uID).setValue(userData);
+                            databaseReference = FirebaseDatabase.getInstance().getReference("Payment");
+                            String cartID = databaseReference.push().getKey();
+                            HashMap<String, String> parameters = new HashMap<>();
+                            parameters.put("count",count);
+                            databaseReference.child(uID).setValue(parameters);
                             Toast.makeText(Register.this,"Account created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else{

@@ -38,9 +38,11 @@ public class Payment extends AppCompatActivity {
     private Button btn_pay;
     private ProgressBar progressBar_payment;
     String payment_amount,count1;
-    int count = 0;
+    int count;
 
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, reference;
+    private String userID;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +63,26 @@ public class Payment extends AppCompatActivity {
         payment_amount = intent.getStringExtra("payment_amount");
         tv_payment_Amount.setText(payment_amount);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Payment");
+        userID = user.getUid();
 
-
-        btn_pay.setOnClickListener(new View.OnClickListener() {
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                String cardHolderName = edt_cardHolderName.getText().toString().trim();
-                String cardNumber = edt_cardNumber.getText().toString().trim();
-                String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
-                String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
-                String cvv = edt_cvv.getText().toString().trim();
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                // get count value from firebase
+                count = Integer.parseInt(snapshot.child("count").getValue().toString());
 
-                ++count;
+                btn_pay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String cardHolderName = edt_cardHolderName.getText().toString().trim();
+                        String cardNumber = edt_cardNumber.getText().toString().trim();
+                        String expiryDate_mon = edt_expiryDate_mon.getText().toString().trim();
+                        String expiryDate_year = edt_expiryDate_year.getText().toString().trim();
+                        String cvv = edt_cvv.getText().toString().trim();
+
+                        ++count;
 
                         // When the card holder name is empty, the error message will be displayed
                         if (cardHolderName.isEmpty()) {
@@ -90,7 +100,7 @@ public class Payment extends AppCompatActivity {
 
                         // When the card number is not in 16-digits, the error message will be displayed
                         if (cardNumber.length() != 16) {
-                            edt_cardNumber.setError("Card number should be 12-digits!");
+                            edt_cardNumber.setError("Card number should be 16-digits!");
                             edt_cardNumber.requestFocus();
                             return;
                         }
@@ -160,6 +170,13 @@ public class Payment extends AppCompatActivity {
                             startActivity(new Intent(Payment.this,MainActivity.class));
                         }
                     }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                Toast.makeText(Payment.this,"Something wrong happened",Toast.LENGTH_LONG).show();
+            }
         });
     }
 }
